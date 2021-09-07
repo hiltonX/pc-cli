@@ -7,7 +7,9 @@ export default class Nav extends React.Component {
     const {title=''} = this.props
     return (<NavBar
         icon={<Icon type="left" />}
-        onLeftClick={() => console.log('onLeftClick')}
+        onLeftClick={
+          () => window.history.back()
+        }
         rightContent={[
           <Icon key="1" type="cross" />,
         ]}
