@@ -1,4 +1,38 @@
 .am-button.am-button-primary
   background-color #3eb271
+  font-size 13px
+  height 30px
+  line-height 30px
   &::before 
     border-color #3eb271!important
+
+.am-list-item
+  padding-left 0!important
+  .am-input-label,
+  .am-input-control input,
+  .am-list-content,
+  .am-list-extra
+    font-size 14px!important
+  .am-input-label,
+  .am-list-content
+    color #333!important
+  .am-list-line
+    .am-list-content
+      flex initial
+      width 90px
+    .am-list-extra
+      flex 1
+      text-align left!important
+      color rgb(187, 187, 187)!important
+  &.am-input-focus
+    .am-input-clear
+      width 17px
+      height 17px
+      background-size 16px auto
+.am-input-item
+  padding-left 0!important
+
+.am-picker-popup-content
+  .am-picker-popup-item
+    color #3eb271
+    font-size 14px

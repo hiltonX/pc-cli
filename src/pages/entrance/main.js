@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, WhiteSpace, WingBlank } from 'antd-mobile'
+import { Button } from 'antd-mobile'
 
 import Frame from '../../frame'
 
@@ -9,12 +9,28 @@ export default class Entrance extends React.Component {
     return (
       <Frame>
         <div className="page-entrance">
-          <div>
-            <Button type="primary">客户搜索</Button>
-            <Button className="mt52" type="primary">项目搜索</Button>
-          </div>
+            <Button 
+              type="primary" 
+              onClick={() => {
+                this.props.history.push({
+                  pathname: `/customer`
+                })
+              }}
+            >
+              客户搜索
+            </Button>
+            <Button 
+              className="mt52" 
+              type="primary"
+              onClick={() => {
+                this.props.history.push({
+                  pathname: `/project`
+                })
+              }}
+            >
+              项目搜索
+            </Button>
         </div> 
-      
       </Frame>
     )
   }

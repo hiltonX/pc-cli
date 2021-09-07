@@ -6,7 +6,7 @@ export default class Frame extends React.Component {
 
   render() {
     const {title='', children} = this.props
-    return (<div className="content">
+    return (<div className="content" style={{background: '#fff'}}>
       <Nav 
         title={title}
       />
