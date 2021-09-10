@@ -1,61 +1,29 @@
 import React from 'react'
+import {
+  Route, 
+  Switch,
+  Redirect
+} from 'react-router-dom'
 
-import { List, InputItem, Picker, Button } from 'antd-mobile'
-import { createForm } from 'rc-form'
 
-import Frame from '../../frame'
-
-
-class Customer extends React.Component {
-
+import Search from './search'
+import Result from './result'
+import Detail from './detail'
+export default class Customer extends React.Component {
+  
   render() {
-    const { getFieldProps } = this.props.form
     return (
-      <Frame title="客户查询">
-        <div className="page-customer mt52 pl24 pr24">
-          <List>
-            <InputItem
-              {...getFieldProps('autofocus')}
-              clear
-              placeholder="请输入客户姓名"
-              ref={el => this.autoFocusInst = el}
-            >
-              客户姓名
-            </InputItem>
-            <InputItem
-              {...getFieldProps('focus')}
-              clear
-              placeholder="请输入客户手机号"
-              ref={el => this.inputRef = el}
-            >
-              客户手机号
-            </InputItem>
-            <Picker 
-              data={[
-                {
-                  label: '2013',
-                  value: '2013',
-                },
-                {
-                  label: '2014',
-                  value: '2014',
-                },
-              ]} 
-              cols={1} 
-              extra="请选择所属公司"
-            >
-              <List.Item arrow="horizontal">所属公司</List.Item>
-            </Picker>
-          </List>
-          <Button type="primary" className="mt52">
-            查询
-          </Button>
-        </div>
-      </Frame>
+      <Switch>
+        {/* 搜索入口 */}
+        <Route strict path="/customer/search" component={Search} />
+        {/* 搜索结果 */}
+        <Route strict path="/customer/result" component={Result} />
+        {/* 查看详情 */}
+        <Route strict path="/customer/detail" component={Detail} />
+
+        <Redirect strict to="/customer/search" />
+      </Switch>
     )
   }
 
 }
-
-const SearchForm = createForm()(Customer)
-export default SearchForm
