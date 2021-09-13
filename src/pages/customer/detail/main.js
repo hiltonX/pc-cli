@@ -49,12 +49,22 @@ class Detail extends React.Component {
               label="家庭成员个数（人）" 
               value="张asa三" 
               icon="right"
+              onClick={() => {
+                this.props.history.push({
+                  pathname: `/customer/family`
+                })
+              }}
             />
             <Info 
               className="mt12"
               label="历史工单（个）（近一年）" 
               value="张asa三" 
               icon="right"
+              onClick={() => {
+                this.props.history.push({
+                  pathname: `/customer/work-order`
+                })
+              }}
             />
             <Info 
               className="mt12"

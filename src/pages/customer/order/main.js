@@ -19,7 +19,7 @@ class Order extends React.Component {
             <SegmentedControl values={['全部', '待付款', '待接收', '待处理', '处理中', '已处理', '已完成', '已关闭']} />
           </WingBlank>
           <div>
-          <List className="pl24 pr24">
+          <List className="mt4 pl24 pr24">
             <Item
               arrow="horizontal"
               multipleLine
