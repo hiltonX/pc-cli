@@ -19,7 +19,7 @@ class Order extends React.Component {
             <SegmentedControl values={['全部', '待付款', '待接收', '待处理', '处理中', '已处理', '已完成', '已关闭']} />
           </WingBlank>
           <div>
-          <List className="mt12 pl24 pr24">
+          <List className="pl24 pr24">
             <Item
               arrow="horizontal"
               multipleLine
@@ -32,13 +32,13 @@ class Order extends React.Component {
                 </div>
                 <div className="commodity-detail FBH fs12">
                   <img className="commodity-img mr20 mt12" src="./2134.jpg" alt="商品图片"/>
-                  <div className="flex1">
-                    <div className="FBH JCSB mt12">
-                      <span>味滋源糯米锅巴好吃</span>
-                      <span>¥99.99</span>
+                  <div className="commodity-info">
+                    <div className="FBH JCSB mt12 break-all">
+                      <span className="ellipsis mr4">味滋源糯米锅巴好吃味滋源糯米锅巴好吃味滋源糯米锅巴好吃味滋源糯米锅巴好吃味滋源糯米锅巴好吃味滋源糯米锅巴好吃味滋源糯米锅巴好吃味滋源糯米锅巴好吃味滋源糯米锅巴好吃味滋源糯米锅巴好吃味滋源糯米锅巴好吃味滋源糯米锅巴好吃味滋源糯米锅巴好吃</span>
+                      <span>¥999999.99</span>
                     </div>
                     <div className="mt12 gray FBH JCSB">
-                      <span>咸味</span>
+                      <span className="commodity-type mr4">咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味咸味</span>
                       <span>x99</span>
                     </div>
                   </div>
@@ -61,10 +61,10 @@ class Order extends React.Component {
                 </div>
                 <div className="commodity-detail FBH fs12">
                   <img className="commodity-img mr20 mt12" src="./2134.jpg" alt="商品图片"/>
-                  <div className="flex1">
+                  <div className="FB1">
                     <div className="FBH JCSB mt12">
                       <span>味滋源糯米锅巴好吃</span>
-                      <span>¥99.99</span>
+                      <span>¥999999.99</span>
                     </div>
                     <div className="mt12 gray FBH JCSB">
                       <span>咸味</span>
@@ -74,7 +74,7 @@ class Order extends React.Component {
                 </div>
                 <div className="commodity-detail FBH mt36 fs12">
                   <img className="commodity-img mr20" src="./2134.jpg" alt="商品图片"/>
-                  <div className="flex1">
+                  <div className="FB1">
                     <div className="FBH JCSB">
                       <span>味滋源糯米锅巴好吃</span>
                       <span>¥99.99</span>
