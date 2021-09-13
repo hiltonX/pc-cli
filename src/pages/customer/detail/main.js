@@ -23,7 +23,6 @@ class Detail extends React.Component {
           </div>
           <div className="mt92">
             <Info 
-              className="mt12"
               label="车位数量（个）" 
               value="张asa三" 
               icon="right"

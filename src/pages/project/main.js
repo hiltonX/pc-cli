@@ -1,43 +1,33 @@
 import React from 'react'
+import {
+  Route, 
+  Switch,
+  Redirect
+} from 'react-router-dom'
 
-import { List, Picker, Button } from 'antd-mobile'
-import { createForm } from 'rc-form'
 
-import Frame from '../../frame'
+import Search from './search'
+import Result from './result'
+import Detail from './detail'
+import Contract from './contract'
 
-class Project extends React.Component {
-
+export default class Project extends React.Component {
+  
   render() {
     return (
-      <Frame title="项目查询">
-        <div className="page-customer mt52 pl24 pr24">
-          <List>
-            <Picker 
-              data={[
-                {
-                  label: '2013',
-                  value: '2013',
-                },
-                {
-                  label: '2014',
-                  value: '2014',
-                },
-              ]} 
-              cols={1} 
-              extra="请选择所属公司"
-            >
-              <List.Item arrow="horizontal">所属公司</List.Item>
-            </Picker>
-          </List>
-          <Button type="primary" className="mt52">
-            查询
-          </Button>
-        </div>
-      </Frame>
+      <Switch>
+        {/* 搜索入口 */}
+        <Route strict path="/project/search" component={Search} />
+        {/* 搜索结果 */}
+        <Route strict path="/project/result" component={Result} />
+        {/* 查看详情 */}
+        <Route strict path="/project/detail" component={Detail} />
+        {/* 合同详情 */}
+        <Route strict path="/project/contract" component={Contract} />
+
+        <Redirect strict to="/project/search" />
+      </Switch>
     )
   }
 
 }
-
-const SearchForm = createForm()(Project)
-export default SearchForm
