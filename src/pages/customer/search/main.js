@@ -20,7 +20,7 @@ class Search extends React.Component {
     } = this.props.form
     return (
       <Frame title="客户查询">
-        <div className="page-customer mt52 pl24 pr24">
+        <div className="page page-customer">
           <List>
             <InputItem // 10个
               {...getFieldProps('perName')}

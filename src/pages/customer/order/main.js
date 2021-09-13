@@ -13,7 +13,7 @@ class Order extends React.Component {
 
   render() {
     return (
-      <Frame title="车位信息">
+      <Frame title="历史订单">
         <div className="page-order mt52">
           <WingBlank size="lg" className="sc-example">
             <SegmentedControl values={['全部', '待付款', '待接收', '待处理', '处理中', '已处理', '已完成', '已关闭']} />
@@ -24,6 +24,11 @@ class Order extends React.Component {
               arrow="horizontal"
               multipleLine
               className="pr4"
+              onClick={() => {
+                this.props.history.push({
+                  pathname: '/customer/order-detail'
+                })
+              }}
             >
               <div>
                 <div className="commodity FBH JCSB">

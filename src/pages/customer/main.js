@@ -12,6 +12,7 @@ import Detail from './detail'
 import ParkSpace from './park-space'
 import Car from './car'
 import Order from './order'
+import OrderDetail from './order-detail'
 export default class Customer extends React.Component {
   
   render() {
@@ -29,6 +30,8 @@ export default class Customer extends React.Component {
         <Route strict path="/customer/car" component={Car} />
         {/* 历史订单 */}
         <Route strict path="/customer/order" component={Order} />
+        {/* 历史订单详情 */}
+        <Route strict path="/customer/order-detail" component={OrderDetail} />
 
         <Redirect strict to="/customer/search" />
       </Switch>

@@ -13,7 +13,7 @@ class Detail extends React.Component {
   render() {
     return (
       <Frame title="客户详情">
-        <div className="page-detail mt52 pl24 pr24">
+        <div className="page page-detail">
           <div>
             <Info label="客户姓名" value="张三" />
             <Info className="mt12" label="客户姓名" value="张三" />

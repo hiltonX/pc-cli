@@ -17,7 +17,7 @@ class ParkSpace extends React.Component {
   render() {
     return (
       <Frame title="车位信息">
-        <div className="page-park-space mt52 pl24 pr24">
+        <div className="page page-park-space">
           <List>
             <Item
               multipleLine
