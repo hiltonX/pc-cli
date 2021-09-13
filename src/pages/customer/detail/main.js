@@ -27,12 +27,22 @@ class Detail extends React.Component {
               label="车位数量（个）" 
               value="张asa三" 
               icon="right"
+              onClick={() => {
+                this.props.history.push({
+                  pathname: `/customer/park-space`
+                })
+              }}
             />
             <Info 
               className="mt12"
               label="车辆数量（个）" 
               value="张asa三" 
               icon="right"
+              onClick={() => {
+                this.props.history.push({
+                  pathname: `/customer/car`
+                })
+              }}
             />
             <Info 
               className="mt12"
@@ -51,6 +61,11 @@ class Detail extends React.Component {
               label="历史订单（个）（近一年）" 
               value="张asa三" 
               icon="right"
+              onClick={() => {
+                this.props.history.push({
+                  pathname: `/customer/order`
+                })
+              }}
             />
 
           </div>

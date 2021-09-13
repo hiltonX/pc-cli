@@ -4,8 +4,11 @@ import { Icon } from 'antd-mobile'
 export default class Info extends React.Component {
 
   render() {
-    const {className='', label, value, icon} = this.props
-    return (<div className={`component-info FBH JCSB ${className}`}>
+    const {className='', label, value, icon, onClick} = this.props
+    return (<div 
+      className={`component-info FBH JCSB ${className}`}
+      onClick={onClick}
+    >
       <div className="nowrap mr8">{label}{label? '：' : ''}</div>
       <div className="FBH">
         <div className="break-all">{value}</div>
