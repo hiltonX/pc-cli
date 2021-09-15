@@ -77,7 +77,7 @@ class Search extends React.Component {
                   // 如果有搜索条件
                   if (hasValue.length) {
                     this.props.history.push({
-                      pathname: `/customer/result`
+                      pathname: `/customer/result?`
                     })
                     console.log(values, 'values....')
                   } else {
