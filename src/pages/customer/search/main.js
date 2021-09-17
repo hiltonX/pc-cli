@@ -23,7 +23,9 @@ class Search extends React.Component {
         <div className="page page-customer">
           <List>
             <InputItem // 10个
-              {...getFieldProps('perName')}
+              {...getFieldProps('perName', {
+                validateTrigger: 'onChange',
+              })}
               clear
               placeholder="请输入客户姓名"
               onChange={(value, e) => {
@@ -36,7 +38,7 @@ class Search extends React.Component {
             </InputItem>
             <InputItem
               {...getFieldProps('userPhone', {
-                validateTrigger: 'onBlur',
+                validateTrigger: 'onChange',
                 rules: [{
                   min: 11, message: '请输入正确手机号'
                 }]
@@ -52,7 +54,9 @@ class Search extends React.Component {
               客户手机号
             </InputItem>
             <InputItem // 20个
-              {...getFieldProps('compName')}
+              {...getFieldProps('compName', {
+                validateTrigger: 'onChange',
+              })}
               placeholder="请输入所属公司"
               clear
               onChange={(value, e) => {
@@ -74,12 +78,16 @@ class Search extends React.Component {
                   const valueArr = Object.values(values)
 
                   const hasValue = valueArr.filter(item => item!== undefined && item!== '')
+                  let str = ''
+                  Object.keys(values).map(item => {
+                    if (values[item]!==undefined) {
+                      str = str + `&${item}=${values[item]}`
+                    }
+                  })
+                  str = str.slice(1)
                   // 如果有搜索条件
                   if (hasValue.length) {
-                    this.props.history.push({
-                      pathname: `/customer/result?`
-                    })
-                    console.log(values, 'values....')
+                    this.props.history.push(`/customer/result?${str}`)
                   } else {
                     Toast.info('请至少输入一项查询条件', 2)
                   }

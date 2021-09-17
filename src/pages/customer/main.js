@@ -24,7 +24,7 @@ export default class Customer extends React.Component {
         {/* 搜索入口 */}
         <Route strict path="/customer/search" component={Search} />
         {/* 搜索结果 */}
-        <Route strict path="/customer/result" component={Result} />
+        <Route path="/customer/result" component={Result} />
         {/* 查看详情 */}
         <Route strict path="/customer/detail" component={Detail} />
         {/* 车位信息 */}
