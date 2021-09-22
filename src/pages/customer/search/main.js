@@ -6,9 +6,6 @@ import { createForm } from 'rc-form'
 
 import Frame from '../../../frame'
 
-import MainStore from './store-main'
-
-const store = new MainStore()
 @observer
 class Search extends React.Component {
 

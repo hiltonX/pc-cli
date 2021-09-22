@@ -1,11 +1,11 @@
 import ioContext from '../../../common/io-context'
 
-ioContext.create('customerSearch', {
+ioContext.create('customerResult', {
   // 获取客户列表
   getList: {
-    url: '',
+    url: '/api/client/clientquery',
     method: 'POST',
   },
 })
 
-export default ioContext.api.customerSearch
+export default ioContext.api.customerResult

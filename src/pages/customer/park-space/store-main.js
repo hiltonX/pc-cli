@@ -1,45 +1,48 @@
 import { makeAutoObservable, runInAction } from 'mobx'
-import { message } from 'antd'
+import { Toast } from 'antd-mobile'
+import io from './io'
 
 export default class mainStore {
 
-  // 客户姓名
-  perName = undefined 
-
+  // 客户id
+  perId = undefined 
+  // 车位信息
+  parkSpaceList = []
   
   constructor() {
     makeAutoObservable(this)
   }
  /**
     * @Author 不悔
-    * @Date 2021-06-02
+    * @Date 2021-09-22
     * @desrc 获取审计日志列表
     * @export
-    * @param {Number} current 当前页码
+    * @param {*}
     * 
   */
-  // getLogList = async (current=1) => {
+  getParkSpaceList = async () => {
+    Toast.loading('loading', 10000, () => {}, true)
 
-  //   // this.tableLoading = true
-  //   // this.pagination.current = current
+    try {
+      // const res = await io.getParkSpaceList({
+      //   perId: this.perId
+      // })
+      const res = [{
+        carportNumber: '车位号'
+      }, {
+        carportNumber: '车位号'
+      },{
+        carportNumber: '车位号'
+      }]
 
-  //   try {
-  //     // const res = await io.getLogList({
-  //     //   ...this.filterParams,
-  //     //   ...this.pagination,
-  //     //   pageNum: current
-  //     // })
-  //     // runInAction(() => {
-  //     //   this.tableLoading = false
-  //     //   this.pagination.total = res.count || res.data.length
-
-  //     //   this.logList = res.data
-  //     // })
-  //   } catch (e) {
-  //     // console.log(e, 'getLogList')
-  //     // message.error(e.message)
-  //     // this.tableLoading = false
-  //   }
-  // }
+      runInAction(() => {
+        Toast.hide()
+        this.parkSpaceList = res
+      })
+    } catch (e) {
+      console.log(e, 'getParkSpaceList')
+      Toast.hide()
+    }
+  }
 
 }

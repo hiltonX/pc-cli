@@ -1,6 +1,6 @@
 import React from "react"
 import onerIO from 'oner-io'
-import {Modal} from 'antd'
+import {Modal} from 'antd-mobile'
 
 export const context = onerIO.context({
   rest: true,

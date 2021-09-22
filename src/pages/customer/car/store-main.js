@@ -1,10 +1,13 @@
 import { makeAutoObservable, runInAction } from 'mobx'
-import { message } from 'antd'
+import { Toast } from 'antd-mobile'
+import io from './io'
 
 export default class mainStore {
 
-  // 客户姓名
-  perName = undefined 
+   // 客户id
+   perId = undefined 
+   // 车辆信息
+   carList = []
 
   
   constructor() {
@@ -12,34 +15,41 @@ export default class mainStore {
   }
  /**
     * @Author 不悔
-    * @Date 2021-06-02
-    * @desrc 获取审计日志列表
+    * @Date 2021-09-22
+    * @desrc 获取车辆信息列表
     * @export
-    * @param {Number} current 当前页码
+    * @param {*}
     * 
   */
-  // getLogList = async (current=1) => {
+  getCarList = async () => {
+    Toast.loading('loading', 10000, () => {}, true)
 
-  //   // this.tableLoading = true
-  //   // this.pagination.current = current
+    try {
+      // const res = await io.getCarList({
+      //   perId: this.perId
+      // })
+      const res = [{
+        vehicleumber: '车牌号',
+        vehicleBrand: '品牌',
+        vehicleSeries: '系列',
+      }, {
+        vehicleumber: '车牌号',
+        vehicleBrand: '品牌',
+        vehicleSeries: '系列',
+      },{
+        vehicleumber: '车牌号',
+        vehicleBrand: '品牌',
+        vehicleSeries: '系列',
+      }]
 
-  //   try {
-  //     // const res = await io.getLogList({
-  //     //   ...this.filterParams,
-  //     //   ...this.pagination,
-  //     //   pageNum: current
-  //     // })
-  //     // runInAction(() => {
-  //     //   this.tableLoading = false
-  //     //   this.pagination.total = res.count || res.data.length
-
-  //     //   this.logList = res.data
-  //     // })
-  //   } catch (e) {
-  //     // console.log(e, 'getLogList')
-  //     // message.error(e.message)
-  //     // this.tableLoading = false
-  //   }
-  // }
+      runInAction(() => {
+        Toast.hide()
+        this.carList = res
+      })
+    } catch (e) {
+      console.log(e, 'getCarList')
+      Toast.hide()
+    }
+  }
 
 }

@@ -1,6 +1,8 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 
+import { urlToObject } from '../../../common/util'
+
 import { List } from 'antd-mobile'
 import Frame from '../../../frame'
 import Info from '../../../component/info'
@@ -15,25 +17,29 @@ const store = new MainStore()
 @observer
 class Family extends React.Component {
 
+  componentDidMount() {
+    const {search} = this.props.location
+  
+    const { perId } = urlToObject(search) || {}
+    store.perId = perId
+
+    store.getFamilyList()
+  }
+
   render() {
     return (
       <Frame title="家庭成员">
         <div className="page page-family">
           <List>
-            <Item>
-              <Info label="姓名" value="浙A12344"/>
-              <Info className="mt12" label="称呼" value="宝马"/>
-              <Info className="mt12" label="性别" value="三系"/>
-              <Info className="mt12" label="出生日期" value="三系"/>
-              <Info className="mt12" label="工作单位" value="三系"/>
-            </Item>
-            <Item>
-              <Info label="姓名" value="浙A12344"/>
-              <Info className="mt12" label="称呼" value="宝马"/>
-              <Info className="mt12" label="性别" value="三系"/>
-              <Info className="mt12" label="出生日期" value="三系"/>
-              <Info className="mt12" label="工作单位" value="三系"/>
-            </Item>
+            {store.familyList.map(item => {
+              return (<Item>
+                <Info label="姓名" value={item.name}/>
+                <Info className="mt12" label="称呼" value={item.appellation}/>
+                <Info className="mt12" label="性别" value={item.sex}/>
+                <Info className="mt12" label="出生日期" value={item.birthday}/>
+                <Info className="mt12" label="工作单位" value={item.company}/>
+              </Item>)
+            })}
           </List>
         </div>
       </Frame>
