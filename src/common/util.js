@@ -59,7 +59,7 @@ export const watermark = ({
     const watermarkDiv = document.createElement('div') 
 
     watermarkDiv.id = id
-    watermarkDiv.setAttribute('style', `position:absolute;top:-52px;left: 0;width:100%; height: 100%;z-index:${zIndex};background-repeat:repeat;pointer-events:none;background-image:url('${base64Url}')`)        
+    watermarkDiv.setAttribute('style', `position:absolute;top:0;left: 0;width:100%; height: 100%;z-index:${zIndex};background-repeat:repeat;pointer-events:none;background-image:url('${base64Url}')`)        
     container.style.position = 'relative'
     container.insertBefore(watermarkDiv, container.firstChild)
 }

@@ -22,7 +22,7 @@ class Result extends React.Component {
   render() {
     return (
       <Frame title="客户查询结果">
-        <div className="page-result mt52">
+        <div className="page page-result">
           <List>
             {store.list.map(item => (
               <Item
