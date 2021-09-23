@@ -14,6 +14,7 @@
     "customize-cra": "^1.0.0",
     "mobx": "^6.3.3",
     "mobx-react": "^7.2.0",
+    "oner-io": "^3.0.2",
     "rc-form": "^2.4.12",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

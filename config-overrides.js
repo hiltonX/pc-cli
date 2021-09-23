@@ -4,8 +4,9 @@ const {
     fixBabelImports,
     addWebpackAlias,
     addWebpackPlugin,
-    addDecoratorsLegacy
-} = require('customize-cra');
+    addDecoratorsLegacy,
+    overrideDevServer
+} = require('customize-cra')
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
  
@@ -37,7 +38,17 @@ const alter_config= ()=>(config, env)=>{
     return config
 }
  
-module.exports= override(
+module.exports= {
+  devServer: overrideDevServer(config => {
+    config.proxy = {
+      '/api': {
+        target: 'http://172.16.55.76:8888',
+        changeOrigin: true,
+      }
+    }
+    return config
+  }),
+  webpack: override(
     alter_config(),   //将自定义配置组合进来
     addWebpackAlias({  //增加路径别名的处理
         '@': path.resolve('./src')
@@ -51,4 +62,5 @@ module.exports= override(
         style: true,
     }),
     addDecoratorsLegacy() // 修饰符
-)
+  ) 
+}

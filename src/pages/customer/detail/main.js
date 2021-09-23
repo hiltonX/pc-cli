@@ -82,9 +82,7 @@ class Detail extends React.Component {
               value={workNumber}
               icon="right"
               onClick={() => {
-                this.props.history.push({
-                  pathname: `/customer/work-order`
-                })
+                this.props.history.push(`/customer/work-order?perId=${perId}`)
               }}
             />
             <Info 

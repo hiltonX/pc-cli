@@ -8,7 +8,7 @@ export default class Entrance extends React.Component {
   render() {
     return (
       <Frame>
-        <div className="page-entrance">
+        <div className="page page-entrance">
             <Button 
               type="primary" 
               onClick={() => {

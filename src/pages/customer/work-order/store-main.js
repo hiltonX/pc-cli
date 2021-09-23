@@ -1,45 +1,69 @@
 import { makeAutoObservable, runInAction } from 'mobx'
-import { message } from 'antd'
+import { Toast } from 'antd-mobile'
+import io from './io'
 
 export default class mainStore {
 
-  // 客户姓名
-  perName = undefined 
+  // 客户id
+  perId = undefined 
+  // 工单状态
+  expStatus = undefined
+  // 工单信息
+  workOrderList = []
 
   
   constructor() {
     makeAutoObservable(this)
   }
- /**
+
+  /**
     * @Author 不悔
-    * @Date 2021-06-02
-    * @desrc 获取审计日志列表
+    * @Date 2021-09-22
+    * @desrc 获取工单列表
     * @export
-    * @param {Number} current 当前页码
+    * @param {*}
     * 
   */
-  // getLogList = async (current=1) => {
+  getWorkOrderList = async () => {
+    Toast.loading('loading', 10000, () => {}, true)
 
-  //   // this.tableLoading = true
-  //   // this.pagination.current = current
+    try {
+      // const res = await io.getWorkOrderList({
+      //   perId: this.perId,
+      //   expStatus: this.expStatus
+      // })
+      const res = [{
+        subName: '所属服务',
+        commitDate: '下单时间',
+        subState: '服务状态',
+        orderId: '订单编号',
+        desc: '工单来源',
+        datetime: '预约时间',
+        expStatus: '订单状态',
+        orderDescribe: '订单描述',
+        coupleBack: '处理反馈',
+        photo: '图片',
+      }, {
+        subName: '所属服务',
+        commitDate: '下单时间',
+        subState: '服务状态',
+        orderId: '订单编号',
+        desc: '工单来源',
+        datetime: '预约时间',
+        expStatus: '订单状态',
+        orderDescribe: '订单描述',
+        coupleBack: '处理反馈',
+        photo: '图片',
+      }]
 
-  //   try {
-  //     // const res = await io.getLogList({
-  //     //   ...this.filterParams,
-  //     //   ...this.pagination,
-  //     //   pageNum: current
-  //     // })
-  //     // runInAction(() => {
-  //     //   this.tableLoading = false
-  //     //   this.pagination.total = res.count || res.data.length
-
-  //     //   this.logList = res.data
-  //     // })
-  //   } catch (e) {
-  //     // console.log(e, 'getLogList')
-  //     // message.error(e.message)
-  //     // this.tableLoading = false
-  //   }
-  // }
+      runInAction(() => {
+        Toast.hide()
+        this.workOrderList = res
+      })
+    } catch (e) {
+      console.log(e, 'getWorkOrderList')
+      Toast.hide()
+    }
+  }
 
 }

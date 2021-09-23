@@ -20,3 +20,47 @@ export const urlToObject = (url) => {
     return params
   }
 }
+
+
+/**
+  * @Author 不悔
+  * @Date 2021-09-23
+  * @desrc 水印
+  * @export
+  * @param {*}
+  * 
+*/
+export const watermark = ({
+  id = 'water-mark',
+  textList = ['张三李四'],
+  container = document.body, 
+  width = window.innerWidth / 3,
+  // height = document.body.clientHeight / 3.3,
+  fillStyle = 'rgb(242, 242, 242)',
+  zIndex = 10000,
+  font = '12px normal Rubik'
+} = {}) => {
+    const canvas = document.createElement('canvas')
+    canvas.width = width
+    // canvas.height = height
+
+    const ctx = canvas.getContext('2d')
+    ctx.fillStyle = fillStyle
+    ctx.font = font
+
+    ctx.rotate(Math.PI/180 * 30)
+    
+    textList.map(item => {
+      console.log(item, 'textList.....')
+      return ctx.fillText(item, (width - ctx.measureText(item).width) / 2 , 0)
+    })
+
+    const base64Url = canvas.toDataURL()
+    const watermarkDiv = document.createElement('div') 
+
+    watermarkDiv.id = id
+    watermarkDiv.setAttribute('style', `position:absolute;top:-52px;left: 0;width:100%; height: 100%;z-index:${zIndex};background-repeat:repeat;pointer-events:none;background-image:url('${base64Url}')`)        
+    container.style.position = 'relative'
+    container.insertBefore(watermarkDiv, container.firstChild)
+}
+

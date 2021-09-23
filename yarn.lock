@@ -8213,6 +8213,18 @@
   dependencies:
     "wrappy" "1"
 
+"oner-io@^3.0.2":
+  "integrity" "sha1-xThS2t/wef/nweICLgFnmLSDr0o="
+  "resolved" "https://registry.nlark.com/oner-io/download/oner-io-3.0.2.tgz"
+  "version" "3.0.2"
+  dependencies:
+    "oner-storage" "^3.0.0"
+
+"oner-storage@^3.0.0":
+  "integrity" "sha1-yVIB/LIxtAWXKYVdJ83GxGnFsGY="
+  "resolved" "https://registry.nlark.com/oner-storage/download/oner-storage-3.0.0.tgz"
+  "version" "3.0.0"
+
 "onetime@^5.1.0":
   "integrity" "sha1-0Oluu1awdHbfHdnEgG5SN5hcpF4="
   "resolved" "https://registry.npm.taobao.org/onetime/download/onetime-5.1.2.tgz"

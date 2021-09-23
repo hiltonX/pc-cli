@@ -13,15 +13,8 @@ export default class mainStore {
   constructor() {
     makeAutoObservable(this)
   }
- /**
-    * @Author 不悔
-    * @Date 2021-06-02
-    * @desrc 获取审计日志列表
-    * @export
-    * @param {Number} current 当前页码
-    * 
-  */
-/**
+  
+  /**
     * @Author 不悔
     * @Date 2021-09-22
     * @desrc 获取车辆信息列表
