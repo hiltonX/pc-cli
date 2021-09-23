@@ -8,7 +8,7 @@
   * 
 */
 export const urlToObject = (url) => {
-  if (url.indexOf('?') > -1){
+  if (url.indexOf('?') === 0){
     
     let str = url.slice(1)
     let strArr = str.indexOf('&') ? str.split('&') : [str]
@@ -17,7 +17,6 @@ export const urlToObject = (url) => {
       const temp = item.indexOf('=') ? item.split('=') : [item]
       params[temp[0]] = temp[1]
     })
-    console.log(params, 'params...')
     return params
   }
 }
@@ -52,7 +51,6 @@ export const watermark = ({
     ctx.rotate(Math.PI/180 * 30)
     
     textList.map(item => {
-      console.log(item, 'textList.....')
       return ctx.fillText(item, (width - ctx.measureText(item).width) / 2 , 0)
     })
 

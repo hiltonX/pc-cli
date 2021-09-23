@@ -42,11 +42,8 @@ module.exports= {
   devServer: overrideDevServer(config => {
     config.proxy = {
       '/api': {
-        target: 'http://172.16.2.63:8888',
+        target: 'http://172.16.55.76:8888',
         changeOrigin: true,
-        // pathRewrite: {
-        //   '/api': ''
-        // }
       }
     }
     return config

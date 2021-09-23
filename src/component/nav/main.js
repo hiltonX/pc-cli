@@ -4,14 +4,18 @@ import { NavBar, Icon } from 'antd-mobile'
 export default class Nav extends React.Component {
 
   render() {
-    const {title=''} = this.props
+    const {
+      title='',
+      noReturn=false,
+      noClose=false,
+    } = this.props
     return (<NavBar
-        icon={<Icon type="left" />}
+        icon={!noReturn && <Icon type="left" />}
         onLeftClick={
           () => window.history.back()
         }
         rightContent={[
-          <Icon key="1" type="cross" />,
+          !noClose && <Icon key="1" type="cross" />,
         ]}
       >
       {title}

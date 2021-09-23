@@ -7,7 +7,11 @@ export default class Entrance extends React.Component {
 
   render() {
     return (
-      <Frame>
+      <Frame
+        title="搜  索"
+        noReturn={true}
+        noClose={true}
+      >
         <div className="page page-entrance">
             <Button 
               type="primary" 
