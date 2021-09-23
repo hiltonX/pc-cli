@@ -24,25 +24,25 @@ export default class mainStore {
     Toast.loading('loading', 10000, () => {}, true)
 
     try {
-      // const res = await io.getLogList({
-      //   perId: this.perId
-      // })
+      const res = await io.getDetail({
+        perId: this.perId
+      })
 
-      const res = {
-        "perName": "客户姓名",
-        "userPhone": "客户手机号码",
-        "projectName": "居住项目",
-        "address": "项目住址",
-        "moveinDate": "入住时间",
-        "steward": "管家",
-        "compName": "所属公司",
-        "carportNumber": "车位数量",
-        "vehicleNumber": "车辆数量",
-        "memberOfFamilyNumber": "家庭成员个数",
-        "workNumber": "历史工单",
-        "orderNumber": "历史订单",
-        perId: 123
-      }
+      // const res = {
+      //   "perName": "客户姓名",
+      //   "userPhone": "客户手机号码",
+      //   "projectName": "居住项目",
+      //   "address": "项目住址",
+      //   "moveinDate": "入住时间",
+      //   "steward": "管家",
+      //   "compName": "所属公司",
+      //   "carportNumber": "车位数量",
+      //   "vehicleNumber": "车辆数量",
+      //   "memberOfFamilyNumber": "家庭成员个数",
+      //   "workNumber": "历史工单",
+      //   "orderNumber": "历史订单",
+      //   perId: 123
+      // }
 
       runInAction(() => {
         this.perDetail = res

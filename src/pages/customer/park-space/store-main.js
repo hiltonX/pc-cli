@@ -24,20 +24,22 @@ export default class mainStore {
     Toast.loading('loading', 10000, () => {}, true)
 
     try {
-      // const res = await io.getParkSpaceList({
-      //   perId: this.perId
-      // })
-      const res = [{
-        carportNumber: '车位号'
-      }, {
-        carportNumber: '车位号'
-      },{
-        carportNumber: '车位号'
-      }]
+      const res = await io.getParkSpaceList({
+        perId: this.perId
+      })
+      // const res = [{
+      //   carportNumber: '车位号'
+      // }, {
+      //   carportNumber: '车位号'
+      // },{
+      //   carportNumber: '车位号'
+      // }]
 
       runInAction(() => {
         Toast.hide()
-        this.parkSpaceList = res
+        this.parkSpaceList = res || []
+
+        console.log(res, 'res....')
       })
     } catch (e) {
       console.log(e, 'getParkSpaceList')

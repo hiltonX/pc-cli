@@ -8,7 +8,8 @@
   * 
 */
 export const urlToObject = (url) => {
-  if (url.indexOf('?')){
+  if (url.indexOf('?') > -1){
+    
     let str = url.slice(1)
     let strArr = str.indexOf('&') ? str.split('&') : [str]
     const params = {}
@@ -16,7 +17,7 @@ export const urlToObject = (url) => {
       const temp = item.indexOf('=') ? item.split('=') : [item]
       params[temp[0]] = temp[1]
     })
-
+    console.log(params, 'params...')
     return params
   }
 }
@@ -37,7 +38,7 @@ export const watermark = ({
   width = window.innerWidth / 3,
   // height = document.body.clientHeight / 3.3,
   fillStyle = 'rgb(242, 242, 242)',
-  zIndex = 10000,
+  zIndex = 100,
   font = '12px normal Rubik'
 } = {}) => {
     const canvas = document.createElement('canvas')

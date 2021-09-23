@@ -25,26 +25,26 @@ export default class mainStore {
     Toast.loading('loading', 10000, () => {}, true)
 
     try {
-      // const res = await io.getCarList({
-      //   perId: this.perId
-      // })
-      const res = [{
-        vehicleumber: '车牌号',
-        vehicleBrand: '品牌',
-        vehicleSeries: '系列',
-      }, {
-        vehicleumber: '车牌号',
-        vehicleBrand: '品牌',
-        vehicleSeries: '系列',
-      },{
-        vehicleumber: '车牌号',
-        vehicleBrand: '品牌',
-        vehicleSeries: '系列',
-      }]
+      const res = await io.getCarList({
+        perId: this.perId
+      })
+      // const res = [{
+      //   vehicleumber: '车牌号',
+      //   vehicleBrand: '品牌',
+      //   vehicleSeries: '系列',
+      // }, {
+      //   vehicleumber: '车牌号',
+      //   vehicleBrand: '品牌',
+      //   vehicleSeries: '系列',
+      // },{
+      //   vehicleumber: '车牌号',
+      //   vehicleBrand: '品牌',
+      //   vehicleSeries: '系列',
+      // }]
 
       runInAction(() => {
         Toast.hide()
-        this.carList = res
+        this.carList = res || []
       })
     } catch (e) {
       console.log(e, 'getCarList')

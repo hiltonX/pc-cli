@@ -21,7 +21,7 @@ class Car extends React.Component {
   
     const { perId } = urlToObject(search) || {}
     store.perId = perId
-
+    
     store.getCarList()
   }
 

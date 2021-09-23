@@ -2,6 +2,8 @@ import { makeAutoObservable, runInAction } from 'mobx'
 import { Toast } from 'antd-mobile'
 import io from './io'
 export default class mainStore {
+  // 当前页码
+  current = 1
   // 搜索列表的入参
   filterParams = undefined 
   // 列表
@@ -23,7 +25,11 @@ export default class mainStore {
     Toast.loading('loading', 10000, () => {}, true)
 
     try {
-      const res = await io.getList(this.filterParams)
+      const res = await io.getList({
+        ...this.filterParams,
+        pageSize: 10,
+        pageNum: this.current
+      })
 
       // const res = [{
       //   "perName": "客户姓名",
@@ -42,7 +48,8 @@ export default class mainStore {
       // }]
 
       runInAction(() => {
-        this.list = res
+        const {content=[]} = res
+        this.list = content
         Toast.hide()
       })
     } catch (e) {

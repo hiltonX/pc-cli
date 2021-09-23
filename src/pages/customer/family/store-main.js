@@ -26,28 +26,28 @@ export default class mainStore {
     Toast.loading('loading', 10000, () => {}, true)
 
     try {
-      // const res = await io.getFamilyList({
-      //   perId: this.perId
-      // })
-      const res = [{
-        name: '张三',
-        appellation: '母亲',
-        sex: '性别',
-        birthday: 'birthday',
-        company: '工作单位'
-      }, {
-        vehicleumber: '车牌号',
-        vehicleBrand: '品牌',
-        vehicleSeries: '系列',
-      },{
-        vehicleumber: '车牌号',
-        vehicleBrand: '品牌',
-        vehicleSeries: '系列',
-      }]
+      const res = await io.getFamilyList({
+        perId: this.perId
+      })
+      // const res = [{
+      //   name: '张三',
+      //   appellation: '母亲',
+      //   sex: '性别',
+      //   birthday: 'birthday',
+      //   company: '工作单位'
+      // }, {
+      //   vehicleumber: '车牌号',
+      //   vehicleBrand: '品牌',
+      //   vehicleSeries: '系列',
+      // },{
+      //   vehicleumber: '车牌号',
+      //   vehicleBrand: '品牌',
+      //   vehicleSeries: '系列',
+      // }]
 
       runInAction(() => {
         Toast.hide()
-        this.familyList = res
+        this.familyList = res || []
       })
     } catch (e) {
       console.log(e, 'getCarList')

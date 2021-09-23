@@ -39,7 +39,7 @@ export const context = onerIO.context({
         code: response.code,
       })
     } else {
-      this.toResolve(response.content || {})
+      this.toResolve(response.content)
     }
   },
 })
