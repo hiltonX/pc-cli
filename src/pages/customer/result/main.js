@@ -1,13 +1,12 @@
 import React from 'react'
-import {toJS} from 'mobx'
 import { observer } from 'mobx-react'
 
-// import { List } from 'antd-mobile'
-import { PullToRefresh, List, ListView } from 'antd-mobile'
+import { List, ListView } from 'antd-mobile'
 
 import { urlToObject } from '../../../common/util'
 
 import Frame from '../../../frame'
+import Empty from '../../../component/empty'
 
 import MainStore from './store-main'
 
@@ -21,23 +20,25 @@ class Result extends React.Component {
     store.dataSource = new ListView.DataSource({
       rowHasChanged: (row1, row2) => row1 !== row2
     })
-  }
 
-  componentDidMount() {
     const {search} = this.props.location
  
     store.filterParams = urlToObject(search)
     store.getList()
   }
 
+  componentDidMount() {
+    
+  }
+
   render() {
 
-    const isEmpty = store.current === 1 && store.list.length === 0
+    const isEmpty = store.current === 1 && store.list.length === 0 
 
     return (
       <Frame title="客户查询结果">
         <div className="page page-result">
-          {isEmpty && store.loading ? <div>查询结果为空</div>: <ListView
+          {isEmpty && !store.loading ? <Empty /> : <ListView
             dataSource={store.dataSource.cloneWithRows(store.list)}
             renderRow={(rowData, sectionID, rowID) => {
               return (<Item

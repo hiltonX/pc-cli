@@ -6,6 +6,7 @@ import { urlToObject } from '../../../common/util'
 import { List } from 'antd-mobile'
 import Frame from '../../../frame'
 import Info from '../../../component/info'
+import Empty from '../../../component/empty'
 
 import MainStore from './store-main'
 
@@ -16,7 +17,9 @@ const store = new MainStore()
 @observer
 class ParkSpace extends React.Component {
 
-  componentDidMount() {
+  constructor(props) {
+    super(props)
+
     const {search} = this.props.location
   
     const { perId } = urlToObject(search) || {}
@@ -29,7 +32,7 @@ class ParkSpace extends React.Component {
     return (
       <Frame title="车位信息">
         <div className="page page-park-space">
-          <List>
+          {!store.loading && store.parkSpaceList ? <Empty /> : <List>
             {
               store.parkSpaceList.map(item => {
                 return (<Item>
@@ -37,7 +40,8 @@ class ParkSpace extends React.Component {
                 </Item>)
               })
             }
-          </List>
+          </List>}
+
         </div>
       </Frame>
     )

@@ -6,6 +6,7 @@ import { urlToObject } from '../../../common/util'
 import { List } from 'antd-mobile'
 import Frame from '../../../frame'
 import Info from '../../../component/info'
+import Empty from '../../../component/empty'
 
 import MainStore from './store-main'
 
@@ -17,7 +18,9 @@ const store = new MainStore()
 @observer
 class Family extends React.Component {
 
-  componentDidMount() {
+  constructor(props) {
+    super(props)
+
     const {search} = this.props.location
   
     const { perId } = urlToObject(search) || {}
@@ -30,7 +33,7 @@ class Family extends React.Component {
     return (
       <Frame title="家庭成员">
         <div className="page page-family">
-          <List>
+          {store.familyList.length <= 0 ? <Empty /> : <List>
             {store.familyList.map(item => {
               return (<Item>
                 <Info label="姓名" value={item.name}/>
@@ -40,7 +43,7 @@ class Family extends React.Component {
                 <Info className="mt12" label="工作单位" value={item.company}/>
               </Item>)
             })}
-          </List>
+          </List>}
         </div>
       </Frame>
     )
