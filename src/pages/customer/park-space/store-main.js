@@ -38,8 +38,6 @@ export default class mainStore {
       runInAction(() => {
         Toast.hide()
         this.parkSpaceList = res || []
-
-        console.log(res, 'res....')
       })
     } catch (e) {
       console.log(e, 'getParkSpaceList')

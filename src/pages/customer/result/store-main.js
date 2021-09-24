@@ -8,6 +8,10 @@ export default class mainStore {
   filterParams = undefined 
   // 列表
   list = []
+  // dataSource
+  dataSource = undefined
+  // loading
+  loading = false
   
   constructor() {
     makeAutoObservable(this)
@@ -23,7 +27,7 @@ export default class mainStore {
   getList = async () => {
 
     Toast.loading('loading', 10000, () => {}, true)
-
+    this.loading = true
     try {
       const res = await io.getList({
         ...this.filterParams,
@@ -31,30 +35,152 @@ export default class mainStore {
         pageNum: this.current
       })
 
-      // const res = [{
-      //   "perName": "客户姓名",
-      //   "userPhone": "客户手机号码",
-      //   "projectName": "居住项目",
-      //   "address": "项目住址",
-      //   "moveinDate": "入住时间",
-      //   "steward": "管家",
-      //   "compName": "所属公司",
-      //   "carportNumber": "车位数量",
-      //   "vehicleNumber": "车辆数量",
-      //   "memberOfFamilyNumber": "家庭成员个数",
-      //   "workNumber": "历史工单",
-      //   "orderNumber": "历史订单",
-      //   perId: 123
-      // }]
+      // let res = {
+      //   content: [{
+      //     "perName": `客户姓名${this.current}`,
+      //     "userPhone": "客户手机号码",
+      //     "projectName": "居住项目",
+      //     "address": "项目住址",
+      //     "moveinDate": "入住时间",
+      //     "steward": "管家",
+      //     "compName": "所属公司",
+      //     "carportNumber": "车位数量",
+      //     "vehicleNumber": "车辆数量",
+      //     "memberOfFamilyNumber": "家庭成员个数",
+      //     "workNumber": "历史工单",
+      //     "orderNumber": "历史订单",
+      //     perId: 123
+      //   }, {
+      //     "perName": `客户姓名${this.current}`,
+      //     "userPhone": "客户手机号码",
+      //     "projectName": "居住项目",
+      //     "address": "项目住址",
+      //     "moveinDate": "入住时间",
+      //     "steward": "管家",
+      //     "compName": "所属公司",
+      //     "carportNumber": "车位数量",
+      //     "vehicleNumber": "车辆数量",
+      //     "memberOfFamilyNumber": "家庭成员个数",
+      //     "workNumber": "历史工单",
+      //     "orderNumber": "历史订单",
+      //     perId: 123
+      //   }, {
+      //     "perName": `客户姓名${this.current}`,
+      //     "userPhone": "客户手机号码",
+      //     "projectName": "居住项目",
+      //     "address": "项目住址",
+      //     "moveinDate": "入住时间",
+      //     "steward": "管家",
+      //     "compName": "所属公司",
+      //     "carportNumber": "车位数量",
+      //     "vehicleNumber": "车辆数量",
+      //     "memberOfFamilyNumber": "家庭成员个数",
+      //     "workNumber": "历史工单",
+      //     "orderNumber": "历史订单",
+      //     perId: 123
+      //   }, {
+      //     "perName": `客户姓名${this.current}`,
+      //     "userPhone": "客户手机号码",
+      //     "projectName": "居住项目",
+      //     "address": "项目住址",
+      //     "moveinDate": "入住时间",
+      //     "steward": "管家",
+      //     "compName": "所属公司",
+      //     "carportNumber": "车位数量",
+      //     "vehicleNumber": "车辆数量",
+      //     "memberOfFamilyNumber": "家庭成员个数",
+      //     "workNumber": "历史工单",
+      //     "orderNumber": "历史订单",
+      //     perId: 123
+      //   }, {
+      //     "perName": `客户姓名${this.current}`,
+      //     "userPhone": "客户手机号码",
+      //     "projectName": "居住项目",
+      //     "address": "项目住址",
+      //     "moveinDate": "入住时间",
+      //     "steward": "管家",
+      //     "compName": "所属公司",
+      //     "carportNumber": "车位数量",
+      //     "vehicleNumber": "车辆数量",
+      //     "memberOfFamilyNumber": "家庭成员个数",
+      //     "workNumber": "历史工单",
+      //     "orderNumber": "历史订单",
+      //     perId: 123
+      //   }, {
+      //     "perName": `客户姓名${this.current}`,
+      //     "userPhone": "客户手机号码",
+      //     "projectName": "居住项目",
+      //     "address": "项目住址",
+      //     "moveinDate": "入住时间",
+      //     "steward": "管家",
+      //     "compName": "所属公司",
+      //     "carportNumber": "车位数量",
+      //     "vehicleNumber": "车辆数量",
+      //     "memberOfFamilyNumber": "家庭成员个数",
+      //     "workNumber": "历史工单",
+      //     "orderNumber": "历史订单",
+      //     perId: 123
+      //   }, {
+      //     "perName": `客户姓名${this.current}`,
+      //     "userPhone": "客户手机号码",
+      //     "projectName": "居住项目",
+      //     "address": "项目住址",
+      //     "moveinDate": "入住时间",
+      //     "steward": "管家",
+      //     "compName": "所属公司",
+      //     "carportNumber": "车位数量",
+      //     "vehicleNumber": "车辆数量",
+      //     "memberOfFamilyNumber": "家庭成员个数",
+      //     "workNumber": "历史工单",
+      //     "orderNumber": "历史订单",
+      //     perId: 123
+      //   }]
+      // }
 
+      // if(this.current === 2) {
+      //   res = {
+      //     content: [{
+      //       "perName": "客户姓名",
+      //       "userPhone": "客户手机号码",
+      //       "projectName": "居住项目",
+      //       "address": "项目住址",
+      //       "moveinDate": "入住时间",
+      //       "steward": "管家",
+      //       "compName": "所属公司",
+      //       "carportNumber": "车位数量",
+      //       "vehicleNumber": "车辆数量",
+      //       "memberOfFamilyNumber": "家庭成员个数",
+      //       "workNumber": "历史工单",
+      //       "orderNumber": "历史订单",
+      //       perId: 123
+      //     }, {
+      //       "perName": "客户姓名",
+      //       "userPhone": "客户手机号码",
+      //       "projectName": "居住项目",
+      //       "address": "项目住址",
+      //       "moveinDate": "入住时间",
+      //       "steward": "管家",
+      //       "compName": "所属公司",
+      //       "carportNumber": "车位数量",
+      //       "vehicleNumber": "车辆数量",
+      //       "memberOfFamilyNumber": "家庭成员个数",
+      //       "workNumber": "历史工单",
+      //       "orderNumber": "历史订单",
+      //       perId: 123
+      //     }]
+      //   }
+      // }
       runInAction(() => {
         const {content=[]} = res
         this.list = content
+        this.loading = false
+
         Toast.hide()
       })
     } catch (e) {
       console.log(e, 'getList')
       Toast.hide()
+      this.loading = false
     }
   }
 

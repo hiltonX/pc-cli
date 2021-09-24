@@ -33,7 +33,7 @@ class ParkSpace extends React.Component {
             {
               store.parkSpaceList.map(item => {
                 return (<Item>
-                  <Info label="车位号" value={item.carportNumber}/>
+                  <Info label="车位号" value={item.carportMumber}/>
                 </Item>)
               })
             }

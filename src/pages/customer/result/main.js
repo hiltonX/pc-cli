@@ -1,7 +1,10 @@
 import React from 'react'
+import {toJS} from 'mobx'
 import { observer } from 'mobx-react'
 
-import { List } from 'antd-mobile'
+// import { List } from 'antd-mobile'
+import { PullToRefresh, List, ListView } from 'antd-mobile'
+
 import { urlToObject } from '../../../common/util'
 
 import Frame from '../../../frame'
@@ -12,9 +15,17 @@ const Item = List.Item
 const store = new MainStore()
 @observer
 class Result extends React.Component {
+  constructor(props) {
+    super(props)
+   
+    store.dataSource = new ListView.DataSource({
+      rowHasChanged: (row1, row2) => row1 !== row2
+    })
+  }
+
   componentDidMount() {
     const {search} = this.props.location
-  
+ 
     store.filterParams = urlToObject(search)
     store.getList()
   }
@@ -23,26 +34,45 @@ class Result extends React.Component {
     return (
       <Frame title="客户查询结果">
         <div className="page page-result">
-          <List>
-            {store.list.map(item => (
-              <Item
+          <ListView
+            dataSource={store.dataSource.cloneWithRows(store.list)}
+            renderRow={(rowData, sectionID, rowID) => {
+              return (<Item
                 arrow="horizontal"
                 onClick={() => {
-                  this.props.history.push(`/customer/detail?perId=${item.perId}`)
+                  this.props.history.push(`/customer/detail?perId=${rowData.perId}`)
                 }}
                 className="pr4"
-                key={item.perId}
+                key={rowData.perId}
               >
                 <div className="pl24">
                   <div className="FBH JCSB">
-                    <div>{item.perName}</div>
-                    <div>{item.userPhone}</div>
+                    <div>{rowData.perName}</div>
+                    <div>{rowData.userPhone}</div>
                   </div>
-                  <div className="mt12">{item.projectName}</div>
+                  <div className="mt12">{rowData.projectName}</div>
                 </div>
-              </Item>
-            ))}
-          </List>
+              </Item>)
+            }}
+            initialListSize={10}
+            pageSize={10}
+            useBodyScroll={true}
+            // pullToRefresh={<PullToRefresh
+            //   refreshing={store.loading}
+            //   onRefresh={() => {
+            //     store.getList()
+            //   }}
+            // />}
+            onEndReached={() => {
+              //当前页小于总页数继续请求下一页数据，否则停止请求数据
+              if (store.list.length >= 10) {
+                store.current += 1
+                store.getList()
+              }
+            }}
+            renderFooter={() => (<div>{store.loading ? '加载中' : ''}</div>)}
+            onEndReachedThreshold={30}
+          />
         </div>
       </Frame>
     )
