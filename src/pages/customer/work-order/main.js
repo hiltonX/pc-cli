@@ -1,4 +1,5 @@
 import React from 'react'
+import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 
 import { urlToObject } from '../../../common/util'
@@ -6,9 +7,9 @@ import { urlToObject } from '../../../common/util'
 import { SegmentedControl, WingBlank, List } from 'antd-mobile'
 import Frame from '../../../frame'
 import Info from '../../../component/info'
+import Empty from '../../../component/empty'
 
 import MainStore from './store-main'
-import { strictEqual } from 'assert'
 
 const Item = List.Item
 
@@ -31,16 +32,21 @@ class WorkOrder extends React.Component {
       <Frame title="历史工单">
         <div className="page page-work-order">
           <WingBlank size="lg" className="sc-example">
-            <SegmentedControl values={['全部', '投诉', '表扬', '报事']} />
+            <SegmentedControl 
+              values={['全部', '投诉', '表扬', '报事']} 
+              onChange={(value) => {
+                store.expStatus = value
+                store.getWorkOrderList()
+              }}
+            />
           </WingBlank>
-          <List className="mt4">
+          {store.workOrderList.length <= 0 ? <Empty /> : <List className="mt4">
             {store.workOrderList.map(item => {
               return (<Item
+                key={item.workId}
                 arrow="horizontal"
                 onClick={() => {
-                  this.props.history.push({
-                    pathname: `/customer/work-order-detail`
-                  })
+                  this.props.history.push(`/customer/work-order-detail?orderId=${item.orderId}`)
                 }}
               >
                 <Info label="所属服务" value={item.subName}/>
@@ -50,7 +56,7 @@ class WorkOrder extends React.Component {
                 <Info className="mt12" label="工单来源" value={item.desc}/>
               </Item>)
             })}
-          </List>
+          </List>}
         </div>
       </Frame>
     )

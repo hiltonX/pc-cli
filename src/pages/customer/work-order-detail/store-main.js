@@ -1,45 +1,56 @@
 import { makeAutoObservable, runInAction } from 'mobx'
-import { message } from 'antd'
+import { Toast } from 'antd-mobile'
+import io from './io'
+
 
 export default class mainStore {
 
-  // 客户姓名
-  perName = undefined 
-
+  // 订单id
+  orderId = undefined 
+  // 订单详情
+  workOrderDetail = {}
   
   constructor() {
     makeAutoObservable(this)
   }
  /**
     * @Author 不悔
-    * @Date 2021-06-02
-    * @desrc 获取审计日志列表
+    * @Date 2021-09-24
+    * @desrc 订单详情
     * @export
-    * @param {Number} current 当前页码
+    * @param {*}
     * 
   */
-  // getLogList = async (current=1) => {
+  getWorkOrderDetail = async () => {
 
-  //   // this.tableLoading = true
-  //   // this.pagination.current = current
+    Toast.loading('loading', 10000, () => {}, true)
 
-  //   try {
-  //     // const res = await io.getLogList({
-  //     //   ...this.filterParams,
-  //     //   ...this.pagination,
-  //     //   pageNum: current
-  //     // })
-  //     // runInAction(() => {
-  //     //   this.tableLoading = false
-  //     //   this.pagination.total = res.count || res.data.length
+    try {
+      const res = await io.getWorkOrderDetail({
+        orderId: this.orderId,
+      })
+      // const res = {
+      //   orderId: '订单编号',
+      //   subName: '所属服务',
+      //   desc: '工单来源',
+      //   commitDate: '下单时间',
+      //   datetime: '预约时间',
+      //   expStatus: '订单状态',
+      //   orderDescribe: '订单描述',
+      //   coupleBack: '处理反馈',
+      //   photo: '图片',
+      // }
 
-  //     //   this.logList = res.data
-  //     // })
-  //   } catch (e) {
-  //     // console.log(e, 'getLogList')
-  //     // message.error(e.message)
-  //     // this.tableLoading = false
-  //   }
-  // }
+      runInAction(() => {
+        this.workOrderDetail = res || {}
+
+        Toast.hide()
+      })
+    } catch (e) {
+      console.log(e, 'getWorkOrderDetail')
+      Toast.hide()
+    }
+  }
+
 
 }

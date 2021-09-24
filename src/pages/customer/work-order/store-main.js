@@ -7,7 +7,7 @@ export default class mainStore {
   // 客户id
   perId = undefined 
   // 工单状态
-  expStatus = undefined
+  expStatus = '全部'
   // 工单信息
   workOrderList = []
 
@@ -55,7 +55,6 @@ export default class mainStore {
       //   coupleBack: '处理反馈',
       //   photo: '图片',
       // }]
-
       runInAction(() => {
         Toast.hide()
         this.workOrderList = res || []
