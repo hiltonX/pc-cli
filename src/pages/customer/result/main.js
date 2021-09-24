@@ -14,9 +14,7 @@ const Item = List.Item
 const store = new MainStore()
 @observer
 class Result extends React.Component {
-  constructor(props) {
-    super(props)
-   
+  componentDidMount() {
     store.dataSource = new ListView.DataSource({
       rowHasChanged: (row1, row2) => row1 !== row2
     })
@@ -27,9 +25,6 @@ class Result extends React.Component {
     store.getList()
   }
 
-  componentDidMount() {
-    
-  }
 
   render() {
 

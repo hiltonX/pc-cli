@@ -31,6 +31,7 @@ export default class mainStore {
     try {
       const res = await io.getList({
         ...this.filterParams,
+        userPhone: +this.filterParams.userPhone,
         pageSize: 10,
         pageNum: this.current
       })
