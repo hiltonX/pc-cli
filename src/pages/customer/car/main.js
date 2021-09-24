@@ -32,7 +32,7 @@ class Car extends React.Component {
           <List>
             {store.carList.map(item => {
               return (<Item>
-                <Info label="车牌号" value={item.vehicleumber}/>
+                <Info label="车牌号" value={item.vehicleMumber}/>
                 <Info className="mt12" label="车辆品牌及型号" value={item.vehicleBrand}/>
                 <Info className="mt12" label="车辆系列" value={item.vehicleSeries}/>
               </Item>)
