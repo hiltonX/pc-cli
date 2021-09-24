@@ -13,9 +13,7 @@ const store = new MainStore()
 @observer
 class WorkOrderDetail extends React.Component {
 
-  constructor(props) {
-    super(props)
-
+  componentDidMount(props) {
     const {search} = this.props.location
   
     const { orderId } = urlToObject(search) || {}
@@ -37,7 +35,7 @@ class WorkOrderDetail extends React.Component {
       coupleBack,
       photo,
     } = store.workOrderDetail
-    
+
     return (
       <Frame title="历史订单详情">
         <div className="page page-work-order-detail">

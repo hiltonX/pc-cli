@@ -17,9 +17,7 @@ const store = new MainStore()
 @observer
 class ParkSpace extends React.Component {
 
-  constructor(props) {
-    super(props)
-
+  componentDidMount() {
     const {search} = this.props.location
   
     const { perId } = urlToObject(search) || {}

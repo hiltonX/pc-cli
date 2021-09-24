@@ -1,5 +1,4 @@
 import React from 'react'
-import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 
 import { urlToObject } from '../../../common/util'

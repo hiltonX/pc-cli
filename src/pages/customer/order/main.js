@@ -1,8 +1,11 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 
+import { urlToObject } from '../../../common/util'
+
 import { SegmentedControl, WingBlank, List } from 'antd-mobile'
 import Frame from '../../../frame'
+import Empty from '../../../component/empty'
 
 import MainStore from './store-main'
 
@@ -10,6 +13,15 @@ const Item = List.Item
 const store = new MainStore()
 @observer
 class Order extends React.Component {
+
+  componentDidMount() {
+    const {search} = this.props.location
+  
+    const { perId } = urlToObject(search) || {}
+    store.perId = perId
+
+    store.getOrderList()
+  }
 
   render() {
     return (
@@ -19,7 +31,7 @@ class Order extends React.Component {
             <SegmentedControl values={['全部', '待付款', '待接收', '待处理', '处理中', '已处理', '已完成', '已关闭']} />
           </WingBlank>
           <div>
-          <List className="mt4 pl24 pr24">
+          {store.orderList.length <= 0 ? <Empty /> :<List className="mt4 pl24 pr24">
             <Item
               arrow="horizontal"
               multipleLine
@@ -96,7 +108,7 @@ class Order extends React.Component {
                 </div>
               </div>
             </Item>
-          </List>
+          </List>}
 
           </div>
         </div>

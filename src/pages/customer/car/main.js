@@ -17,8 +17,7 @@ const store = new MainStore()
 @observer
 class Car extends React.Component {
 
-  constructor(props) {
-    super(props)
+  componentDidMount() {
 
     const {search} = this.props.location
   
