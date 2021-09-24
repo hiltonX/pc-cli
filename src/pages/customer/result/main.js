@@ -31,10 +31,13 @@ class Result extends React.Component {
   }
 
   render() {
+
+    const isEmpty = store.current === 1 && store.list.length === 0
+
     return (
       <Frame title="客户查询结果">
         <div className="page page-result">
-          <ListView
+          {isEmpty ? <div>查询结果为空</div>: <ListView
             dataSource={store.dataSource.cloneWithRows(store.list)}
             renderRow={(rowData, sectionID, rowID) => {
               return (<Item
@@ -72,7 +75,7 @@ class Result extends React.Component {
             }}
             renderFooter={() => (<div>{store.loading ? '加载中' : ''}</div>)}
             onEndReachedThreshold={30}
-          />
+          />}
         </div>
       </Frame>
     )
