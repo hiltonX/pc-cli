@@ -35,7 +35,7 @@ class Result extends React.Component {
     return (
       <Frame title="项目查询结果">
         <div className="page page-result mt52">
-          {isEmpty && !!store.loading ? <Empty /> : <ListView
+          {isEmpty && !store.loading ? <Empty /> : <ListView
             dataSource={store.dataSource.cloneWithRows(store.list)}
             renderRow={(rowData, sectionID, rowID) => {
               return (

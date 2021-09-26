@@ -8,6 +8,8 @@ export default class mainStore {
   filterParams = undefined 
   // 列表
   list = []
+  // 总共页数
+  totalPages = 0
   // dataSource
   dataSource = undefined
   // loading
@@ -172,8 +174,9 @@ export default class mainStore {
       //   }
       // }
       runInAction(() => {
-        const {content=[]} = res
-        this.list = content
+        const {content=[], totalPages} = res
+        this.list = this.list.concat(content)
+        this.totalPages = totalPages
         this.loading = false
 
         Toast.hide()
