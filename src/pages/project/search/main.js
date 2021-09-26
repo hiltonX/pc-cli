@@ -6,9 +6,6 @@ import { createForm } from 'rc-form'
 
 import Frame from '../../../frame'
 
-import MainStore from './store-main'
-
-const store = new MainStore()
 @observer
 class Search extends React.Component {
 
@@ -45,12 +42,16 @@ class Search extends React.Component {
                   const valueArr = Object.values(values)
 
                   const hasValue = valueArr.filter(item => item!== undefined && item!== '')
+                  let str = ''
+                  Object.keys(values).map(item => {
+                    if (values[item]!==undefined) {
+                      str = str + `&${item}=${values[item]}`
+                    }
+                  })
+                  str = str.slice(1)
                   // 如果有搜索条件
                   if (hasValue.length) {
-                    this.props.history.push({
-                      pathname: `/project/result`
-                    })
-                    console.log(values, 'values....')
+                    this.props.history.push(`/project/result?${str}`)
                   } else {
                     Toast.info('请输入公司名称', 2)
                   }

@@ -14,11 +14,14 @@ const Item = List.Item
 const store = new MainStore()
 @observer
 class Result extends React.Component {
-  componentDidMount() {
+  constructor(props) {
+    super(props)
+
     store.dataSource = new ListView.DataSource({
       rowHasChanged: (row1, row2) => row1 !== row2
     })
-
+  }
+  componentDidMount() {
     const {search} = this.props.location
  
     store.filterParams = urlToObject(search)

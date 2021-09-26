@@ -4,28 +4,30 @@ import io from './io'
 
 export default class mainStore {
 
-  // 项目id
-  projectId = undefined 
-  // 项目详情
-  projectDetail = {}
+  // token
+  token = undefined 
+
   
   constructor() {
     makeAutoObservable(this)
   }
  /**
     * @Author 不悔
-    * @Date 2021-09-24
-    * @desrc 项目详情
+    * @Date 2021-09-26
+    * @desrc 获取登录账号
     * @export
     * @param {*}
     * 
   */
-  getProjectDetail = async () => {
+  getAccount = async () => {
 
     Toast.loading('loading', 10000, () => {}, true)
     try {
-      // const res = await io.getProjectDetail({
-      //   projectId: this.projectId
+      // const res = await io.getAccount({
+      //   token: this.token,
+      //   NWVersion: '版本号',
+      //   NWCode: '业务代码',
+      //   NWGUID: '2010072115220907818261',
       // })
 
       const res = {
@@ -45,10 +47,9 @@ export default class mainStore {
 
       runInAction(() => {
         Toast.hide()
-        this.projectDetail = res || {}
       })
     } catch (e) {
-      console.log(e, 'getProjectDetail')
+      console.log(e, 'getAccount')
       Toast.hide()
     }
   }

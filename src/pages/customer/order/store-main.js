@@ -7,9 +7,9 @@ export default class mainStore {
     // 客户id
     perId = undefined 
     // 订单状态
-    orderList = '全部'
-    // 工单信息
-    workOrderList = []
+    expStatus = '全部'
+    // 订单信息
+    orderList = []
   
     
     constructor() {

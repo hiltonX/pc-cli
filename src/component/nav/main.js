@@ -7,7 +7,7 @@ export default class Nav extends React.Component {
     const {
       title='',
       noReturn=false,
-      noClose=false,
+      noClose=true,
     } = this.props
     return (<NavBar
         icon={!noReturn && <Icon type="left" />}

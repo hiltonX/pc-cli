@@ -1,9 +1,23 @@
 import React from 'react'
 import { Button } from 'antd-mobile'
 
+import { urlToObject } from '../../common/util'
+
 import Frame from '../../frame'
 
+import MainStore from './store-main'
+
+const store = new MainStore()
 export default class Entrance extends React.Component {
+
+  componentDidMount() {
+    const {search} = this.props.location
+  
+    const { token } = urlToObject(search) || {}
+    store.token = token
+
+    store.getAccount()
+  }
 
   render() {
     return (

@@ -1,45 +1,67 @@
 import { makeAutoObservable, runInAction } from 'mobx'
-import { message } from 'antd'
-
+import { Toast } from 'antd-mobile'
+import io from './io'
 export default class mainStore {
-
-  // 客户姓名
-  perName = undefined 
-
+  // 当前页码
+  current = 1
+  // 搜索列表的入参
+  filterParams = undefined 
+  // 列表
+  list = []
+  // dataSource
+  dataSource = undefined
+  // loading
+  loading = false
   
   constructor() {
     makeAutoObservable(this)
   }
  /**
     * @Author 不悔
-    * @Date 2021-06-02
-    * @desrc 获取审计日志列表
+    * @Date 2021-09-24
+    * @desrc 搜索列表的入参
     * @export
-    * @param {Number} current 当前页码
+    * @param *
     * 
   */
-  // getLogList = async (current=1) => {
+  getList = async () => {
 
-  //   // this.tableLoading = true
-  //   // this.pagination.current = current
+    Toast.loading('loading', 10000, () => {}, true)
+    this.loading = true
+    try {
+      const res = await io.getList({
+        ...this.filterParams,
+        pageSize: 10,
+        pageNum: this.current
+      })
 
-  //   try {
-  //     // const res = await io.getLogList({
-  //     //   ...this.filterParams,
-  //     //   ...this.pagination,
-  //     //   pageNum: current
-  //     // })
-  //     // runInAction(() => {
-  //     //   this.tableLoading = false
-  //     //   this.pagination.total = res.count || res.data.length
+      // let res = {
+      //   content: [{
+      //     "compName": "公司名称",
+      //     "projectName": "项目名称",
+      //     "firstParty": "甲方主体",
+      //     "second_party": "乙方主体",
+      //     "commercialActivities": "业态",
+      //     "area": "区域",
+      //     "projectAddress": "项目地址",
+      //     "contractList": "合同列表",
+      //     "contractName": "合同名称",
+      //     "contractId": "合同ID"
+      //   }]
+      // }
 
-  //     //   this.logList = res.data
-  //     // })
-  //   } catch (e) {
-  //     // console.log(e, 'getLogList')
-  //     // message.error(e.message)
-  //     // this.tableLoading = false
-  //   }
-  // }
+      runInAction(() => {
+        const {content=[]} = res
+        this.list = content
+        this.loading = false
+
+        Toast.hide()
+      })
+    } catch (e) {
+      console.log(e, 'getList')
+      Toast.hide()
+      this.loading = false
+    }
+  }
 
 }

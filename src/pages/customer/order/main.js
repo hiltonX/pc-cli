@@ -31,8 +31,54 @@ class Order extends React.Component {
             <SegmentedControl values={['全部', '待付款', '待接收', '待处理', '处理中', '已处理', '已完成', '已关闭']} />
           </WingBlank>
           <div>
-          {store.orderList.length <= 0 ? <Empty /> :<List className="mt4 pl24 pr24">
-            <Item
+          {store.orderList.length <= 0 ? <Empty /> : <List className="mt4 pl24 pr24">
+            {store.orderList.map(item => {
+                return (<Item
+                  arrow="horizontal"
+                  multipleLine
+                  className="pr4"
+                >
+                  <div>
+                    <div className="commodity FBH JCSB">
+                      <div className="commodity-name">{item.integrationName}</div>
+                      <div className="commodity-status red">{item.expStatus}</div>
+                    </div>
+                    {(item.commodityList || []).map(cItem => (
+                      <div className="commodity-detail FBH fs12">
+                      <img className="commodity-img mr20 mt12" src={cItem.itemPic} alt="商品图片"/>
+                      <div className="FB1">
+                        <div className="FBH JCSB mt12">
+                          <span>{cItem.itemName}</span>
+                          <span>¥{cItem.itemPrice}</span>
+                        </div>
+                        <div className="mt12 gray FBH JCSB">
+                          <span>咸味</span>
+                          <span>x{cItem.itemNum}</span>
+                        </div>
+                      </div>
+                    </div>
+                    ))}
+                    {/* <div className="commodity-detail FBH mt36 fs12">
+                      <img className="commodity-img mr20" src="./2134.jpg" alt="商品图片"/>
+                      <div className="FB1">
+                        <div className="FBH JCSB">
+                          <span>味滋源糯米锅巴好吃</span>
+                          <span>¥99.99</span>
+                        </div>
+                        <div className="mt12 gray FBH JCSB">
+                          <span>咸味</span>
+                          <span>x99</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="mt32 FBH JCSB pl94 fs12">
+                      <span className="gray">总价：¥99.99</span>
+                      <span>需付款：¥99.99</span>
+                    </div> */}
+                  </div>
+                </Item>)
+            })}
+            {/* <Item
               arrow="horizontal"
               multipleLine
               className="pr4"
@@ -107,7 +153,7 @@ class Order extends React.Component {
                   <span>需付款：¥99.99</span>
                 </div>
               </div>
-            </Item>
+            </Item> */}
           </List>}
 
           </div>
