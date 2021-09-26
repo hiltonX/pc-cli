@@ -4,7 +4,7 @@ ioContext.create('entrance', {
   // 获取帐号信息
   getAccount: {
     url: '/ns-face-sys/service',
-    method: 'POST',
+    method: 'GET',
   },
 })
 

@@ -44,6 +44,10 @@ module.exports= {
       '/api': {
         target: 'http://172.16.55.69:8888',
         changeOrigin: true,
+      }, 
+      '/ns-face-sys': {
+        target: 'https://ceshi.zjlcwg.com:7443',
+        changeOrigin: true,
       }
     }
     return config

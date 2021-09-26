@@ -5,13 +5,7 @@ import WarmTip from '../component/warm-tip'
 import { watermark } from '../common/util'
 export default class Frame extends React.Component {
   componentDidMount() {
-    const watermarkBox = document.getElementById('water-mark')
-
-    if (!watermarkBox) {
-      watermark({
-        container: document.getElementsByClassName('water-mark')[0]
-      })
-    }
+ 
   }
 
   render() {

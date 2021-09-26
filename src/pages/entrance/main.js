@@ -1,4 +1,5 @@
 import React from 'react'
+import { observer } from 'mobx-react'
 import { Button } from 'antd-mobile'
 
 import { urlToObject } from '../../common/util'
@@ -6,9 +7,12 @@ import { urlToObject } from '../../common/util'
 import Frame from '../../frame'
 
 import MainStore from './store-main'
+import Empty from '../../component/empty'
 
 const store = new MainStore()
-export default class Entrance extends React.Component {
+
+@observer
+class Entrance extends React.Component {
 
   componentDidMount() {
     const {search} = this.props.location
@@ -26,7 +30,7 @@ export default class Entrance extends React.Component {
         noReturn={true}
         noClose={true}
       >
-        <div className="page page-entrance">
+        {!store.loading  && (store.errorMsg ? <Empty className="page" text={store.errorMsg || '页面加载中'}/> : <div className="page page-entrance">
             <Button 
               type="primary" 
               onClick={() => {
@@ -48,8 +52,10 @@ export default class Entrance extends React.Component {
             >
               项目搜索
             </Button>
-        </div> 
+        </div>) }
       </Frame>
     )
   }
 }
+
+export default Entrance
