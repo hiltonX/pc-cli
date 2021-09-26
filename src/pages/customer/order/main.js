@@ -28,15 +28,29 @@ class Order extends React.Component {
       <Frame title="历史订单">
         <div className="page-order mt52">
           <WingBlank size="lg" className="sc-example">
-            <SegmentedControl values={['全部', '待付款', '待接收', '待处理', '处理中', '已处理', '已完成', '已关闭']} />
+            <SegmentedControl 
+              values={['全部', '待付款', '待接收', '待处理', '处理中', '已处理', '已完成', '已关闭']} 
+              // value={store.expStatus}
+              selectedIndex={store.expStatus}
+              onChange={(e) => {
+                const {selectedSegmentIndex} = e.nativeEvent
+                store.expStatus = selectedSegmentIndex
+
+                store.getOrderList()
+              }}
+            />
           </WingBlank>
           <div>
           {store.orderList.length <= 0 ? <Empty /> : <List className="mt4 pl24 pr24">
             {store.orderList.map(item => {
                 return (<Item
+                  key={item.orderId}
                   arrow="horizontal"
                   multipleLine
                   className="pr4"
+                  onClick={() => {
+                    this.props.history.push(`/customer/order-detail?orderId=${item.orderId}`)
+                  }}
                 >
                   <div>
                     <div className="commodity FBH JCSB">
@@ -44,19 +58,19 @@ class Order extends React.Component {
                       <div className="commodity-status red">{item.expStatus}</div>
                     </div>
                     {(item.commodityList || []).map(cItem => (
-                      <div className="commodity-detail FBH fs12">
-                      <img className="commodity-img mr20 mt12" src={cItem.itemPic} alt="商品图片"/>
-                      <div className="FB1">
-                        <div className="FBH JCSB mt12">
-                          <span>{cItem.itemName}</span>
-                          <span>¥{cItem.itemPrice}</span>
-                        </div>
-                        <div className="mt12 gray FBH JCSB">
-                          <span>咸味</span>
-                          <span>x{cItem.itemNum}</span>
+                      <div className="commodity-detail FBH fs12" key={item.commodityId}>
+                        <img className="commodity-img mr20 mt12" src={cItem.itemPic} alt="商品图片"/>
+                        <div className="FB1">
+                          <div className="FBH JCSB mt12">
+                            <span>{cItem.itemName}</span>
+                            <span>¥{cItem.itemPrice}</span>
+                          </div>
+                          <div className="mt12 gray FBH JCSB">
+                            <span>咸味</span>
+                            <span>x{cItem.itemNum}</span>
+                          </div>
                         </div>
                       </div>
-                    </div>
                     ))}
                     {/* <div className="commodity-detail FBH mt36 fs12">
                       <img className="commodity-img mr20" src="./2134.jpg" alt="商品图片"/>

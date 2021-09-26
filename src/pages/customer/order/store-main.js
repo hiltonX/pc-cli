@@ -7,7 +7,7 @@ export default class mainStore {
     // 客户id
     perId = undefined 
     // 订单状态
-    expStatus = '全部'
+    expStatus = 0
     // 订单信息
     orderList = []
   
