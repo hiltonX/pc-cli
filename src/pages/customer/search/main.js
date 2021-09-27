@@ -30,6 +30,12 @@ class Search extends React.Component {
                   perName: value.substring(0,10)
                 })
               }}
+              compositionstart={() => {
+                console.log('onCompositionstart')
+              }}
+              compositionend={() => {
+                console.log('onCompositionend')
+              }}
             >
               客户姓名
             </InputItem>

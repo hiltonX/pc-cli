@@ -37,7 +37,7 @@ class WorkOrderDetail extends React.Component {
     } = store.workOrderDetail
 
     return (
-      <Frame title="历史订单详情">
+      <Frame title="历史工单详情">
         <div className="page page-work-order-detail">
           <Info label="订单编号" value={orderId}/>
           <Info className="mt12" label="所属服务" value={subName}/>

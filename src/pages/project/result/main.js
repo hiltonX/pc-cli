@@ -65,7 +65,7 @@ class Result extends React.Component {
             // />}
             onEndReached={() => {
               //当前页小于总页数继续请求下一页数据，否则停止请求数据
-              if (store.current < store.totalPages) {
+              if (store.lastLength >= 10) {
                 store.current += 1
                 store.getList()
               }

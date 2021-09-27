@@ -12,8 +12,8 @@ export default class mainStore {
   dataSource = undefined
   // loading
   loading = false
-  // 总页数
-  totalPages = 0
+  // 最后一页条数
+  lastLength = 0
   
   constructor() {
     makeAutoObservable(this)
@@ -53,10 +53,9 @@ export default class mainStore {
       // }
 
       runInAction(() => {
-        const {content=[], totalPages} = res
-        this.list = this.list.concat(content)
+        this.list = this.list.concat(res || [])
         this.loading = false
-        this.totalPages = totalPages
+        this.lastLength = res.length
         Toast.hide()
       })
     } catch (e) {
