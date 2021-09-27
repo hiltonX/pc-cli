@@ -26,7 +26,7 @@ class Order extends React.Component {
   render() {
     return (
       <Frame title="历史订单">
-        <div className="page-order mt52">
+        <div className="page page-order">
           <WingBlank size="lg" className="sc-example">
             <SegmentedControl 
               values={['全部', '待付款', '待接收', '待处理', '处理中', '已处理', '已完成', '已关闭']} 
