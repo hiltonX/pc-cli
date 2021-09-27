@@ -31,17 +31,7 @@ export default class mainStore {
     Toast.loading('loading', 10000, () => {}, true)
     try {
       const res = await io.getAccount({
-        Request: {
-          Data: {
-            NWVersion: '01',
-            NWCode: 'SYS_validateToken',
-            NWGUID: '2010072115220907818261',
-            NWExID: ''
-          },
-          Head: {
-            token: this.token
-          }
-        }
+        token: this.token
       })
 
       // token: 'eHNjIzEzNjU1NyMyMDIxMDkyNzExMjMzMA==',
@@ -66,14 +56,15 @@ export default class mainStore {
       runInAction(() => {
         Toast.hide()
         this.loading = false
-
-        const {NWRespCode, NWErrMsg, Record={username:"test"}} = res
-
-        if (NWRespCode === '100') {
+        console.log(res, 'res.......')
+        const {Data={}} = res.Response
+        const {NWRespCode, NWErrMsg, Record} = Data
+        if (NWRespCode !== '100') {
           this.errorMsg = NWErrMsg
+          localStorage.setItem('username', '')
         } else {
           // 存储username，用来打水印
-          localStorage.setItem('username', Record.username)
+          localStorage.setItem('username', Record.userName || '')
         }
 
       })

@@ -18,60 +18,29 @@ export const context = onerIO.context({
     // config.header.aaaaa = '6666666666'
   },
   fit(response) {
-    // 说明是请求cookie的接口
-    if (Array.isArray(response)) {
-      const data = response[0] || {}
-
-      const {Data={}, Head={}} = data.Response
-
-      if (Data.NWRespCode === '-100') {
-        const errorMsg = Data.NWErrMsg || '登录超时，请重新登录'
-          if (!document.getElementById('login_timeout')) {
-            Modal.confirm({
-              title: <span id="login_timeout">{errorMsg}</span>,
-              content: '',
-              cancelText: '关闭',
-              okText: '确定',
-              onOk: () => {
-                // window.location.hash = '#/login'
-                Modal.destroyAll()
-              },
-            })
-          }
-          throw new Error(errorMsg)
-      } else if (Data.NWRespCode === '100') {
-        this.toResolve(Data)
-      } else {
-        this.toResolve(Data)
-      }
-
+    if (response.code === '300001006' || response.code === '300001005') {
+      const errorMsg = response.message || response.errorMsg || '登录超时，请重新登录'
+        if (!document.getElementById('login_timeout')) {
+          Modal.confirm({
+            title: <span id="login_timeout">{errorMsg}</span>,
+            content: '',
+            cancelText: '关闭',
+            okText: '确定',
+            onOk: () => {
+              window.location.hash = '#/login'
+              Modal.destroyAll()
+            },
+          })
+        }
+        throw new Error(errorMsg)
+    } else if (response.success === false) {
+      this.toReject({
+        message: response.message,
+        code: response.code,
+      })
     } else {
-      if (response.code === '300001006' || response.code === '300001005') {
-        const errorMsg = response.message || response.errorMsg || '登录超时，请重新登录'
-          if (!document.getElementById('login_timeout')) {
-            Modal.confirm({
-              title: <span id="login_timeout">{errorMsg}</span>,
-              content: '',
-              cancelText: '关闭',
-              okText: '确定',
-              onOk: () => {
-                window.location.hash = '#/login'
-                Modal.destroyAll()
-              },
-            })
-          }
-          throw new Error(errorMsg)
-      } else if (response.success === false) {
-        this.toReject({
-          message: response.message,
-          code: response.code,
-        })
-      } else {
-        this.toResolve(response.content)
-      }
+      this.toResolve(response.content)
     }
-    
-    
   },
 })
 

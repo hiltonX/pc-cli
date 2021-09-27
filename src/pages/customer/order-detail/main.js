@@ -1,10 +1,12 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 import { List } from 'antd-mobile'
+import { urlToObject } from '../../../common/util'
 
 import Frame from '../../../frame'
 import Info from '../../../component/info'
 
+import adressImg from '../../../asset/img/adress.png'
 import MainStore from './store-main'
 
 const Item = List.Item
@@ -12,6 +14,15 @@ const store = new MainStore()
 
 @observer
 class OrderDetail extends React.Component {
+
+  componentDidMount() {
+    const {search} = this.props.location
+  
+    const { orderId } = urlToObject(search) || {}
+    store.orderId = orderId
+
+    store.getOrderDetail()
+  }
 
   render() {
     return (
@@ -21,7 +32,7 @@ class OrderDetail extends React.Component {
             <Item>
               <div className="FBH AICT">
                 <div className="mr12">
-                  123
+                  <img src={adressImg} alt="icon-adress"/>
                 </div>
                 <div>
                   <div>张三 13344555777</div>

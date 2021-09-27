@@ -32,6 +32,7 @@ class Entrance extends React.Component {
       >
         {!store.loading  && (store.errorMsg ? <Empty className="page" text={store.errorMsg || '页面加载中'}/> : <div className="page page-entrance">
             <Button 
+              className="mt52"
               type="primary" 
               onClick={() => {
                 this.props.history.push({
