@@ -16,7 +16,11 @@ const Item = List.Item
 const store = new MainStore()
 @observer
 class ParkSpace extends React.Component {
+  constructor(props) {
+    super(props)
 
+    store.parkSpaceList = []
+  }
   componentDidMount() {
     const {search} = this.props.location
   
