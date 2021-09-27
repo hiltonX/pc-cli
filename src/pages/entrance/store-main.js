@@ -31,11 +31,19 @@ export default class mainStore {
     Toast.loading('loading', 10000, () => {}, true)
     try {
       const res = await io.getAccount({
-        token: this.token,
-        NWVersion: '01',
-        NWCode: 'SYS_validateToken',
-        NWGUID: '2010072115220907818261',
+        Data: {
+          NWVersion: '01',
+          NWCode: 'SYS_validateToken',
+          NWGUID: '2010072115220907818261',
+        },
+        Head: {
+          token: 'eHNjIzEzNjU1NyMyMDIxMDkyNzExMjMzMA=='
+        }
       })
+
+      // token: 'eHNjIzEzNjU1NyMyMDIxMDkyNzExMjMzMA==',
+      // token: encodeURIComponent('eHNjIzEzNjU1NyMyMDIxMDkyNzExMjMzMA==') ,
+  
 
       // const res = {
       //   "compName": "公司名称",

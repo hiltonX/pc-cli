@@ -17,7 +17,7 @@ export const context = onerIO.context({
   willFetch: (vars, config) => {
     config.header.NWVersion = '01'
     config.header.NWCode = 'SYS_validateToken'
-    config.header.NWGUID = '2010072115220907818261'
+    config.header.NWGUID = 123
   },
   fit(response) {
     // 说明是请求cookie的接口

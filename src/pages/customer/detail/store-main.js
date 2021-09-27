@@ -45,7 +45,8 @@ export default class mainStore {
       // }
 
       runInAction(() => {
-        this.perDetail = res
+        // 客户详情后端放在数组里
+        this.perDetail = res[0] || {}
         Toast.hide()
       })
     } catch (e) {

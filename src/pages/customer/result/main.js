@@ -16,7 +16,7 @@ const store = new MainStore()
 class Result extends React.Component {
   constructor(props) {
     super(props)
-
+  
     store.dataSource = new ListView.DataSource({
       rowHasChanged: (row1, row2) => row1 !== row2
     })
@@ -24,6 +24,7 @@ class Result extends React.Component {
   componentDidMount() {
     store.list = []
     store.current = 1
+
     const {search} = this.props.location
  
     store.filterParams = urlToObject(search)
@@ -69,7 +70,7 @@ class Result extends React.Component {
             // />}
             onEndReached={() => {
               //当前页小于总页数继续请求下一页数据，否则停止请求数据
-              if (store.current < store.totalPages) {
+              if (store.lastLength >= 10) {
                 store.current += 1
                 store.getList()
               }

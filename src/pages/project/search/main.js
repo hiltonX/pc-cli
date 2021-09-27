@@ -16,7 +16,7 @@ class Search extends React.Component {
       setFieldsValue
     } = this.props.form
     return (
-      <Frame title="客户查询">
+      <Frame title="项目查询">
         <div className="page page-customer">
           <List>
             <InputItem // 20个
