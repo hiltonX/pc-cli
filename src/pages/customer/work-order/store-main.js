@@ -7,7 +7,7 @@ export default class mainStore {
   // 客户id
   perId = undefined 
   // 工单状态
-  expStatus = '全部'
+  expStatus = 0
   // 工单信息
   workOrderList = []
 

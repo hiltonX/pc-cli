@@ -33,8 +33,11 @@ class WorkOrder extends React.Component {
           <WingBlank size="lg" className="sc-example">
             <SegmentedControl 
               values={['全部', '投诉', '表扬', '报事']} 
-              onChange={(value) => {
-                store.expStatus = value
+              selectedIndex={store.expStatus}
+              onChange={(e) => {
+                const {selectedSegmentIndex} = e.nativeEvent
+                store.expStatus = selectedSegmentIndex
+
                 store.getWorkOrderList()
               }}
             />
