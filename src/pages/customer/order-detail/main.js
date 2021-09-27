@@ -25,6 +25,15 @@ class OrderDetail extends React.Component {
   }
 
   render() {
+    const {
+      consigneeName,
+      consigneePhoneNumber,
+      address,
+      orderMoney,
+      logisticsMoney,
+      practiceMoney,
+      desc
+    } = store.orderDetail
     return (
       <Frame title="历史订单详情">
         <div className="page page-order-detail">
@@ -35,8 +44,8 @@ class OrderDetail extends React.Component {
                   <img src={adressImg} alt="icon-adress"/>
                 </div>
                 <div>
-                  <div>张三 13344555777</div>
-                  <div className="mt12">浙江省杭州市西湖区xx村</div>
+                  <div>{consigneeName} {consigneePhoneNumber}</div>
+                  <div className="mt12">{address}</div>
                 </div>
               </div>
             </Item>
@@ -62,15 +71,15 @@ class OrderDetail extends React.Component {
               </div>
             </Item>
             <Item>
-              <Info label="订单金额（元）" value="A001"/>
-              <Info className="mt12" label="物流金额（元）" value="A001"/>
+              <Info label="订单金额（元）" value={orderMoney}/>
+              <Info className="mt12" label="物流金额（元）" value={logisticsMoney}/>
               <Info className="mt12" label="使用红包（元）" value="A001"/>
               <Info className="mt12" label="其他优惠（元）" value="A001"/>
-              <Info className="mt12" label="实付金额（元）" value="A001"/>
+              <Info className="mt12" label="实付金额（元）" value={practiceMoney}/>
             </Item>
             <Item>
               <Info label="订单编号" value="A001"/>
-              <Info className="mt12" label="支付方式" value="联支付宝(12345655870N)"/>
+              <Info className="mt12" label="支付方式" value={desc}/>
             </Item>
           </List>
         </div>
