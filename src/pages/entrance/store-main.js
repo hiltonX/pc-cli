@@ -27,16 +27,18 @@ export default class mainStore {
   */
   getAccount = async () => {
     this.loading = true
-
     Toast.loading('loading', 10000, () => {}, true)
+
+    if(this.token === undefined) {
+      this.errorMsg = '缺少token，请联系系统OA管理员'
+      this.loading = false
+      Toast.hide()
+      return 
+    }
     try {
       const res = await io.getAccount({
         token: this.token
       })
-
-      // token: 'eHNjIzEzNjU1NyMyMDIxMDkyNzExMjMzMA==',
-      // token: encodeURIComponent('eHNjIzEzNjU1NyMyMDIxMDkyNzExMjMzMA==') ,
-  
 
       // const res = {
       //   "compName": "公司名称",
@@ -50,7 +52,6 @@ export default class mainStore {
       //     "contractName": "合同名称",
       //     "contractId": "合同ID"
       //   }],
-        
       // }
 
       runInAction(() => {
@@ -72,6 +73,8 @@ export default class mainStore {
       console.log(e, 'getAccount')
       this.loading = false
       Toast.hide()
+      this.errorMsg = e.message
+      localStorage.setItem('username', '')
     }
   }
 
