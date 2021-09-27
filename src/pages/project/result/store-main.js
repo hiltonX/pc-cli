@@ -33,7 +33,7 @@ export default class mainStore {
     try {
       const res = await io.getList({
         ...this.filterParams,
-        compName: decodeURIComponent(this.filterParams.compName),
+        compName: this.filterParams.compName === undefined ? undefined : decodeURIComponent(this.filterParams.compName),
         pageSize: 10,
         pageNum: this.current
       })

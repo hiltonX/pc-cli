@@ -35,7 +35,7 @@ class Family extends React.Component {
             {store.familyList.map(item => {
               return (<Item key={item.perId}>
                 <Info label="姓名" value={item.perName}/>
-                <Info className="mt12" label="称呼" value={item.appellation}/>
+                <Info className="mt12" label="称呼" value={item.relationship}/>
                 <Info className="mt12" label="性别" value={item.sex}/>
                 <Info className="mt12" label="出生日期" value={item.birthdate}/>
                 <Info className="mt12" label="工作单位" value={item.compName}/>

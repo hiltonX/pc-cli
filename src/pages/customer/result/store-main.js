@@ -34,8 +34,8 @@ export default class mainStore {
       const res = await io.getList({
         ...this.filterParams,
         userPhone: +this.filterParams.userPhone,
-        perName: decodeURIComponent(this.filterParams.perName),
-        compName: decodeURIComponent(this.filterParams.compName),
+        perName: this.filterParams.perName === undefined ? undefined : decodeURIComponent(this.filterParams.perName),
+        compName: this.filterParams.compName === undefined ? undefined : decodeURIComponent(this.filterParams.compName),
         pageSize: 10,
         pageNum: this.current
       })
