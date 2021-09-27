@@ -30,11 +30,14 @@ class ParkSpace extends React.Component {
     return (
       <Frame title="车位信息">
         <div className="page page-park-space">
-          {!store.loading && store.parkSpaceList ? <Empty /> : <List>
+          {store.parkSpaceList.length === 0 ? <Empty /> : <List>
             {
               store.parkSpaceList.map(item => {
+                const {carportMumber} = item
+                const text = carportMumber.indexOf('车位->') ? carportMumber.split('车位->')[1] : carportMumber
+                
                 return (<Item>
-                  <Info label="车位号" value={item.carportMumber}/>
+                  <Info label="车位号" value={text}/>
                 </Item>)
               })
             }
