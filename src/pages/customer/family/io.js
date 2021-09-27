@@ -3,7 +3,7 @@ import ioContext from '../../../common/io-context'
 ioContext.create('customerFamily', {
   // 获取车辆信息
   getFamilyList: {
-    url: '/api/client/family',
+    url: '/api/client/familymember',
     method: 'POST',
   },
 })

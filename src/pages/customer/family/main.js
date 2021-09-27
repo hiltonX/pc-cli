@@ -18,9 +18,7 @@ const store = new MainStore()
 @observer
 class Family extends React.Component {
 
-  constructor(props) {
-    super(props)
-
+  componentDidMount() {
     const {search} = this.props.location
   
     const { perId } = urlToObject(search) || {}
@@ -35,12 +33,12 @@ class Family extends React.Component {
         <div className="page page-family">
           {store.familyList.length <= 0 ? <Empty /> : <List>
             {store.familyList.map(item => {
-              return (<Item>
-                <Info label="姓名" value={item.name}/>
+              return (<Item key={item.perId}>
+                <Info label="姓名" value={item.perName}/>
                 <Info className="mt12" label="称呼" value={item.appellation}/>
                 <Info className="mt12" label="性别" value={item.sex}/>
-                <Info className="mt12" label="出生日期" value={item.birthday}/>
-                <Info className="mt12" label="工作单位" value={item.company}/>
+                <Info className="mt12" label="出生日期" value={item.birthdate}/>
+                <Info className="mt12" label="工作单位" value={item.compName}/>
               </Item>)
             })}
           </List>}
