@@ -1,11 +1,22 @@
 import React from 'react'
+import { observer } from 'mobx-react'
 import Nav from '../component/nav'
 import WarmTip from '../component/warm-tip'
 
 import { watermark } from '../common/util'
-export default class Frame extends React.Component {
+@observer
+class Frame extends React.Component {
   componentDidMount() {
- 
+    const watermarkBox = document.getElementById('water-mark')
+    
+    if (!watermarkBox) {
+      const username = localStorage.getItem('username')
+
+      watermark({
+        container: document.getElementsByClassName('water-mark')[0],
+        textList: [username]
+      })
+    }
   }
 
   render() {
@@ -23,3 +34,5 @@ export default class Frame extends React.Component {
     </div>)
   }
 }
+
+export default Frame

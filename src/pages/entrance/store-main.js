@@ -56,20 +56,14 @@ export default class mainStore {
         Toast.hide()
         this.loading = false
 
-        console.log(res, '1231231......')
         const {NWRespCode, NWErrMsg, Record={username:"test"}} = res
 
         if (NWRespCode !== '100') {
-          // Toast.info(NWErrMsg, 2)
           this.errorMsg = NWErrMsg
         } else {
-          const watermarkBox = document.getElementById('water-mark')
-          if (!watermarkBox) {
-            watermark({
-              container: document.getElementsByClassName('water-mark')[0],
-              textList: [Record.username]
-            })
-          }
+          // 存储username，用来打水印
+          localStorage.setItem('username', Record.username)
+  
         }
 
       })
