@@ -78,7 +78,8 @@ class Search extends React.Component {
                   let str = ''
                   Object.keys(values).map(item => {
                     if (values[item]!==undefined) {
-                      str = str + `&${item}=${values[item]}`
+                      // 正则去除手机号中的空格
+                      str = str + `&${item}=${values[item].replace(/\s/g,"")}`
                     }
                   })
                   str = str.slice(1)

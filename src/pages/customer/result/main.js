@@ -22,6 +22,8 @@ class Result extends React.Component {
     })
   }
   componentDidMount() {
+    store.list = []
+    store.current = 1
     const {search} = this.props.location
  
     store.filterParams = urlToObject(search)

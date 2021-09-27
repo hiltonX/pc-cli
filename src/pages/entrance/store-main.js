@@ -58,7 +58,7 @@ export default class mainStore {
 
         const {NWRespCode, NWErrMsg, Record={username:"test"}} = res
 
-        if (NWRespCode !== '100') {
+        if (NWRespCode === '100') {
           this.errorMsg = NWErrMsg
         } else {
           // 存储username，用来打水印
