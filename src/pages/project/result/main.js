@@ -23,6 +23,9 @@ class Result extends React.Component {
   }
 
   componentDidMount() {
+    store.current = 1
+    store.list = []
+
     const {search} = this.props.location
 
     store.filterParams = urlToObject(search)
@@ -31,11 +34,11 @@ class Result extends React.Component {
 
   render() {
     const isEmpty = store.current === 1 && store.list.length === 0 
-
+    
     return (
       <Frame title="项目查询结果">
         <div className="page page-result mt52">
-          {isEmpty && !store.loading ? <Empty /> : <ListView
+          {isEmpty ? <Empty /> : <ListView
             dataSource={store.dataSource.cloneWithRows(store.list)}
             renderRow={(rowData, sectionID, rowID) => {
               return (
@@ -62,7 +65,7 @@ class Result extends React.Component {
             // />}
             onEndReached={() => {
               //当前页小于总页数继续请求下一页数据，否则停止请求数据
-              if (store.list.length >= 10) {
+              if (store.current < store.totalPages) {
                 store.current += 1
                 store.getList()
               }
