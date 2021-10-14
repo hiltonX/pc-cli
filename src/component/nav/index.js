@@ -1,4 +1,4 @@
-import Main from './main'
-import './index.styl'
+import Nav from './main'
+import './main.styl'
 
-export default Main
+export default Nav

@@ -2,8 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import Router from './router'
 import reportWebVitals from './reportWebVitals'
-import 'antd-mobile/dist/antd-mobile.css'
-import './reset.styl'
+import 'antd/dist/antd.css'
 import './common.styl'
 
 ReactDOM.render(

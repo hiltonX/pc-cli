@@ -1,3 +1,4 @@
-import Main from './main'
+import Frame from './main'
+import './main.styl'
 
-export default Main
+export default Frame

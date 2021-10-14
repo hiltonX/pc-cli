@@ -7,22 +7,24 @@ import {
 } from 'react-router-dom'
 
 
-import Entrance from './pages/entrance'
-import Customer from './pages/customer'
-import Project from './pages/project'
+import Example from './pages/example'
+import PageTwo from './pages/page-two'
 
 export default class PageRoute extends React.Component {
   
   render() {
     return (<Router>
       <Switch>
-        {/* 搜索入口 */}
-        <Route path="/entrance" component={Entrance} />
-        {/* 客户搜索 */}
-        <Route path="/customer" component={Customer} />
-        {/* 项目搜索 */}
-        <Route path="/project" component={Project} />
-        <Redirect exact to="/entrance" />
+        {/* 例子 */}
+        <Route path="/example" component={Example} />
+        {/* 例子2 */}
+        <Route path="/clickStatistics" component={PageTwo} />
+        {/* 例子4 */}
+        <Route path="/market4" component={PageTwo} />
+         {/* 例子4 */}
+         <Route path="/66666" component={PageTwo} />
+        {/* 例子 */}
+        <Redirect exact to="/example" />
       </Switch>
     </Router>)
   }

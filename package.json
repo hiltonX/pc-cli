@@ -1,7 +1,8 @@
 {
-  "name": "greentown-board",
+  "name": "pc-cli",
   "version": "0.1.0",
   "private": true,
+  "homepage": "./",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -10,12 +11,11 @@
     "@types/node": "^16.7.10",
     "@types/react": "^17.0.19",
     "@types/react-dom": "^17.0.9",
-    "antd-mobile": "^2.3.4",
+    "antd": "^4.16.13",
     "customize-cra": "^1.0.0",
     "mobx": "^6.3.3",
     "mobx-react": "^7.2.0",
     "oner-io": "^3.0.2",
-    "rc-form": "^2.4.12",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^5.2.1",
@@ -25,7 +25,7 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "react-scripts build",
+    "build": "react-app-rewired build",
     "test": "react-app-rewired test --env=jsdom",
     "eject": "react-scripts eject"
   },

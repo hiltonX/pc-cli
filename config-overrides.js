@@ -5,7 +5,7 @@ const {
     addWebpackAlias,
     addWebpackPlugin,
     addDecoratorsLegacy,
-    overrideDevServer
+    overrideDevServer,
 } = require('customize-cra')
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -41,14 +41,10 @@ const alter_config= ()=>(config, env)=>{
 module.exports= {
   devServer: overrideDevServer(config => {
     config.proxy = {
-      '/api': {
-        target: 'http://172.16.55.69:8888',
+      '/mock': {
+        target: 'https://mock.mengxuegu.com',
         changeOrigin: true,
       }, 
-      '/ns-face-sys': {
-        target: 'https://ceshi.zjlcwg.com:7443',
-        changeOrigin: true,
-      }
     }
     return config
   }),

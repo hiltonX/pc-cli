@@ -32,10 +32,9 @@ export const urlToObject = (url) => {
 */
 export const watermark = ({
   id = 'water-mark',
-  textList = ['张三李四'],
+  textList = ['张三李四', '大姐姐'],
   container = document.body, 
   width = window.innerWidth / 3,
-  // height = document.body.clientHeight / 3.3,
   fillStyle = 'rgb(242, 242, 242)',
   zIndex = 100,
   font = '12px normal Rubik'
