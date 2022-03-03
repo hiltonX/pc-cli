@@ -8,7 +8,7 @@ import {
 
 
 import Example from './pages/example'
-import PageTwo from './pages/page-two'
+import PageList from './pages/page-list'
 
 export default class PageRoute extends React.Component {
   
@@ -18,11 +18,11 @@ export default class PageRoute extends React.Component {
         {/* 例子 */}
         <Route path="/example" component={Example} />
         {/* 例子2 */}
-        <Route path="/clickStatistics" component={PageTwo} />
+        <Route path="/page-list" component={PageList} />
         {/* 例子4 */}
-        <Route path="/market4" component={PageTwo} />
+        <Route path="/market4" component={PageList} />
          {/* 例子4 */}
-         <Route path="/66666" component={PageTwo} />
+         <Route path="/66666" component={PageList} />
         {/* 例子 */}
         <Redirect exact to="/example" />
       </Switch>

@@ -25,11 +25,11 @@ const menuList = [{
       key: 'example',
   }]
 }, {
-  menuName: '父级2',
-  key: 'market3',
+  menuName: '常规页面',
+  key: 'common',
   childList: [{
-    menuName: '子集4',
-      key: 'market4',
+    menuName: '列表页',
+      key: 'page-list',
   }]
 }, {
   menuName: '单个',
