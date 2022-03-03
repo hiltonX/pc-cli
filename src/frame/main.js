@@ -43,15 +43,13 @@ const menuList = [{
 class Frame extends Component {
   
   componentWillMount() {
-    const openKeys = JSON.parse(sessionStorage.getItem('openKeys')) || []
-
-    if (openKeys.length > 0) {
-      store.openKeys = openKeys 
+    const openKeysStr = sessionStorage.getItem('openKeys') || '[]'
+    const openKeys = JSON.parse(openKeysStr)
+    if (openKeys && openKeys.length > 0) {
+      store.openKeys = openKeys
     } else {
       store.getDefaultOpenKeys(menuList)
     }
-    console.log(window.location.hash.split('#')[1], 'window.location.hash.split')
-    
     store.selectKey = `${window.location.hash.split('#')[1].split('/')[1]}`
   }
   
@@ -73,8 +71,7 @@ class Frame extends Component {
                 selectedKeys={[store.selectKey]}
                 onOpenChange={(openKeys) => {
                   store.openKeys = openKeys
-
-                  console.log(openKeys, 'openKeys....')
+                  sessionStorage.setItem('openKeys', JSON.stringify(store.openKeys))
                 }}
                 onSelectKeyChange={(selectKey) => {
                   store.selectKey = selectKey

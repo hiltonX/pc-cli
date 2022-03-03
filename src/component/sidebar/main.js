@@ -8,7 +8,7 @@ class SideBar extends Component {
   render() {
 
     const {menuList=[], openKeys, selectedKeys, onOpenChange, onSelectKeyChange} = this.props
-
+    
     return (
       <div className="sidebar">
         <Menu 
@@ -19,10 +19,8 @@ class SideBar extends Component {
           onClick={(e) => {
             window.location.hash = `#${e.key}`
             onSelectKeyChange && onSelectKeyChange(e.key)
-            console.log(123, '123')
           }}
           onOpenChange={(openKeys) => {
-            console.log(openKeys, 'openKeys...........')
             onOpenChange && onOpenChange(openKeys)
           }}
         >
