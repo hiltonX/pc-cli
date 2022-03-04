@@ -10,9 +10,8 @@ class MyTable extends Component {
 
     const {url} = this.props
     this.store = new MainStore(url)
-  }
-  componentDidMount() {
-    this.store.getList()
+
+    this.tableRef = React.createRef()
   }
 
   render() {
@@ -21,6 +20,7 @@ class MyTable extends Component {
     return (
       <div className="table">
         <Table 
+          ref={this.tableRef}
           loading={this.store.tableLoading} 
           dataSource={this.store.list}
           pagination={{
@@ -36,5 +36,6 @@ class MyTable extends Component {
     )
   }
 }
+
 
 export default MyTable

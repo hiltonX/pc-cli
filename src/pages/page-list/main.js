@@ -6,12 +6,13 @@ import MyTable from '../../component/table'
 import MainStore from './store-main'
 
 const store = new MainStore()
-
+const ref = React.createRef()
+   
 @observer
 class Example extends React.Component {
 
   componentDidMount() {
-    // store.getInfo()
+    this.tableRef.store.getList()
   }
 
   render() {
@@ -22,6 +23,7 @@ class Example extends React.Component {
         <div className="page">
           请求接口获取的返回值22222：{store.info}
           <MyTable 
+            ref={(ref) => this.tableRef = ref}
             url='https://www.fastmock.site/mock/2273358dd92aa30091921dab8ec2ee1d/getList/getList'
             columns={[{
               title: 'Name',
