@@ -28,14 +28,13 @@ class Example extends React.Component {
               name: 'demo',
             }]}
             getList={(form) => {
-              const params = form.getFieldsValue()
-              this.tableRef.store.getList(params)
+              const filterParams = form.getFieldsValue()
+              this.tableRef.store.getList(filterParams)
             }}
           />
           <MyTable 
             ref={(ref) => this.tableRef = ref}
             url='https://www.fastmock.site/mock/2273358dd92aa30091921dab8ec2ee1d/getList/getList'
-            filterParams={store.filterParams}
             columns={[{
               title: 'Name',
               dataIndex: 'name',
