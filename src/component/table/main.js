@@ -15,7 +15,7 @@ class MyTable extends Component {
   }
 
   render() {
-    const {url, ...rest} = this.props
+    const {url, filterParams, ...rest} = this.props
 
     return (
       <div className="table">

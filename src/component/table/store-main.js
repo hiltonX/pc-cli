@@ -12,7 +12,8 @@ export default class mainStore {
     pageSize: 2,
     total: 0
   }
-
+  // 搜索参数
+  filterParams = {}
   // 列表
   list = []
 
@@ -38,14 +39,15 @@ export default class mainStore {
     * @param {Number} current 当前页面
     * 
   */
-  getList = async (current=1) => {
+  getList = async (params = {}) => {
+    const { current=1, ...rest } = params
     this.tableLoading = true
     this.pagination.current = current
-
+    this.filterParams = rest
 
     try {
       const res = await ioContext.api.list.getList({
-        // ...this.filterParams,
+        ...this.filterParams,
         ...this.pagination,
         pageNum: current
       })
@@ -79,7 +81,10 @@ export default class mainStore {
       this.pagination.pageSize = pagination.pageSize
     }
 
-    this.getList(this.pagination.current)
+    this.getList({
+      current: this.pagination.current,
+      ...this.filterParams
+    })
   }
 
 }

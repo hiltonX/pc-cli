@@ -3,10 +3,10 @@ import { observer } from 'mobx-react'
 
 import Frame from '../../frame'
 import MyTable from '../../component/table'
+import FrameSearch from '../../component/frame-search'
 import MainStore from './store-main'
 
 const store = new MainStore()
-const ref = React.createRef()
    
 @observer
 class Example extends React.Component {
@@ -21,10 +21,21 @@ class Example extends React.Component {
         title="标题"
       >
         <div className="page">
-          请求接口获取的返回值22222：{store.info}
+          <FrameSearch 
+            filterList={[{
+              type: 'text',
+              label: '例子',
+              name: 'demo',
+            }]}
+            getList={(form) => {
+              const params = form.getFieldsValue()
+              this.tableRef.store.getList(params)
+            }}
+          />
           <MyTable 
             ref={(ref) => this.tableRef = ref}
             url='https://www.fastmock.site/mock/2273358dd92aa30091921dab8ec2ee1d/getList/getList'
+            filterParams={store.filterParams}
             columns={[{
               title: 'Name',
               dataIndex: 'name',
