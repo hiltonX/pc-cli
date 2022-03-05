@@ -32,8 +32,8 @@ const menuList = [{
       key: 'page-list',
   }]
 }, {
-  menuName: '单个',
-  key: 'clickStatistics'
+  menuName: '简单页面',
+  key: 'simple'
 }, {
   menuName: '单个2',
   key: '66666'

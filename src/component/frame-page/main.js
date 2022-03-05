@@ -9,6 +9,7 @@ import FrameSearch from '../../component/frame-search'
 class FramePage extends Component {
 
   componentDidMount() {
+    console.log(this.tableRef)
     this.tableRef.store.getList()
   }
 
