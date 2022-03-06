@@ -25,13 +25,14 @@ class FramePage extends Component {
       ref={this.framePageRef}
       >
         {frameSearch && <FrameSearch 
+          style={{marginBottom: '20px'}}
           getList = {(form) => {
             const params = form.getFieldsValue()
             this.tableRef.store.getList(params)
           }}
           {...frameSearch}/>
         }
-        <div className='oprate'>
+        <div className='oprate' style={{marginBottom: '20px'}}>
           {this.props.children}
         </div>
         {FrameTable && <MyTable ref={(ref) => this.tableRef = ref} {...FrameTable}/>}
