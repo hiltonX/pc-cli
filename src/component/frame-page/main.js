@@ -7,16 +7,23 @@ import FrameSearch from '../../component/frame-search'
 
 @observer
 class FramePage extends Component {
+  constructor(props) {
+    super(props)
 
+    this.framePageRef = React.createRef()
+
+  }
   componentDidMount() {
-    console.log(this.tableRef)
     this.tableRef.store.getList()
   }
 
   render() {
     const {frameSearch, FrameTable} = this.props
+
     return (
-      <div className='frame-page'>
+      <div className='frame-page'
+      ref={this.framePageRef}
+      >
         {frameSearch && <FrameSearch 
           getList = {(form) => {
             const params = form.getFieldsValue()

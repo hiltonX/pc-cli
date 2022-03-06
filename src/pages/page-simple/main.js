@@ -4,6 +4,7 @@ import { Button } from 'antd'
 import Frame from '../../frame'
 import FramePage from '../../component/frame-page'
 import MainStore from './store-main'
+import { createModuleResolutionCache } from 'typescript'
 
 const store = new MainStore()
    
@@ -17,6 +18,9 @@ class Simple extends React.Component {
       >
         <div className="page page-simple">
           <FramePage 
+            ref={(ref) => {
+              this.tableRef = ref.tableRef
+            }}
             frameSearch={{
               filterList: [{
                 type: 'text',
@@ -40,7 +44,16 @@ class Simple extends React.Component {
               }]
             }}
           >
-            <div><Button>按钮</Button></div>
+            <div>
+              <Button
+                onClick={() => {
+                  alert('做好新增等操作，更新列表')
+                  this.tableRef.store.getList()
+                }}
+              >
+              按钮
+            </Button>
+            </div>
           </FramePage>
         </div>
       </Frame>
