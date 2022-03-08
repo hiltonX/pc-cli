@@ -21,8 +21,9 @@ class FramePage extends Component {
     const {frameSearch, FrameTable} = this.props
 
     return (
-      <div className='frame-page'
-      ref={this.framePageRef}
+      <div 
+        className='frame-page'
+        ref={this.framePageRef}
       >
         {frameSearch && <FrameSearch 
           style={{marginBottom: '20px'}}

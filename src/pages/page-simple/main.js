@@ -19,7 +19,8 @@ class Simple extends React.Component {
         <div className="page page-simple">
           <FramePage 
             ref={(ref) => {
-              this.tableRef = ref.tableRef
+              const {tableRef} = ref || {}
+              this.tableRef = tableRef
             }}
             frameSearch={{
               filterList: [{
