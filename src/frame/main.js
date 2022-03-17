@@ -41,7 +41,6 @@ const menuList = [{
 
 @observer
 class Frame extends Component {
-  
   componentWillMount() {
     const openKeysStr = sessionStorage.getItem('openKeys') || '[]'
     const openKeys = JSON.parse(openKeysStr)

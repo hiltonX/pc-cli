@@ -27,10 +27,21 @@ class Simple extends React.Component {
                 type: 'text',
                 label: '例子',
                 name: 'demo',
+              }, {
+                type: 'text',
+                label: '例子',
+                name: 'demo2',
+              }, {
+                type: 'text',
+                label: '例子',
+                name: 'demo3',
+              }, {
+                type: 'text',
+                label: '例子',
+                name: 'demo4',
               }]}
             }
             FrameTable={{
-              // ref:{(ref) => this.tableRef = ref}
               url: 'https://www.fastmock.site/mock/2273358dd92aa30091921dab8ec2ee1d/getList/getList',
               columns: [{
                 title: 'Name',
