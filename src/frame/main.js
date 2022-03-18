@@ -16,7 +16,6 @@ const store = new MainStore()
 
 const {Content, Sider} = Layout
 
-
 const menuList = [{
   menuName: '父级',
   key: 'market',
@@ -38,7 +37,7 @@ const menuList = [{
   menuName: '单个2',
   key: '66666'
 }]
-
+  
 @observer
 class Frame extends Component {
   componentWillMount() {
