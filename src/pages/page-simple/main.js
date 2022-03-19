@@ -10,7 +10,6 @@ const store = new MainStore()
    
 @observer
 class Simple extends React.Component {
-
   render() {
     return (
       <Frame
