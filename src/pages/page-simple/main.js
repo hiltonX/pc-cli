@@ -3,10 +3,6 @@ import { observer } from 'mobx-react'
 import { Button } from 'antd'
 import Frame from '../../frame'
 import FramePage from '../../component/frame-page'
-import MainStore from './store-main'
-import { createModuleResolutionCache } from 'typescript'
-
-const store = new MainStore()
    
 @observer
 class Simple extends React.Component {
